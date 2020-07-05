@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stack_trainer/QuizWidgets/MistakeDialog.dart';
-import 'dart:math';
 import 'dart:async';
 import 'constants.dart' as CONST;
 import 'QuizWidgets/CardDisplay.dart';
@@ -20,8 +19,9 @@ class _QuizTrainerState extends State<QuizTrainer> {
   int _chosenPosition = -1;
 
   void setupRandom() {
-    var randomPositions =
-        List.generate(4, (_) => Random().nextInt(CONST.stack.length - 1) + 1);
+    final l = List.generate(52, (i) => i);
+    l.shuffle();
+    final randomPositions = [l[1], l[2], l[3], l[4]];
 
     setState(() {
       _randomCard = CONST.stack.keys.elementAt(randomPositions[0] - 1);
@@ -30,7 +30,7 @@ class _QuizTrainerState extends State<QuizTrainer> {
     });
   }
 
-  Color _getButtonColor(ele, correct, context) {
+  Color _getButtonColor(ele, correct) {
     if (_chosenPosition == ele) {
       return correct ? Colors.green : Colors.red;
     } else {
@@ -38,7 +38,7 @@ class _QuizTrainerState extends State<QuizTrainer> {
     }
   }
 
-  Widget _generateButtons(elements, context) {
+  Widget _generateButtons(elements) {
     final disabled = _chosenPosition != -1 ? true : false;
     var correct = false;
     if (_chosenPosition != -1) {
@@ -56,10 +56,10 @@ class _QuizTrainerState extends State<QuizTrainer> {
             width: 150,
             height: 70,
             child: RaisedButton(
-              onPressed: disabled ? null : () => btnPress(ele, context),
+              onPressed: disabled ? null : () => btnPress(ele),
               disabledElevation: 1,
               disabledTextColor: Colors.black,
-              disabledColor: _getButtonColor(ele, correct, context),
+              disabledColor: _getButtonColor(ele, correct),
               child: Text(
                 '$ele',
                 style: TextStyle(fontSize: 18),
@@ -70,7 +70,7 @@ class _QuizTrainerState extends State<QuizTrainer> {
     );
   }
 
-  Future<void> btnPress(position, context) async {
+  Future<void> btnPress(position) async {
     setState(() {
       _chosenPosition = position;
     });
@@ -131,8 +131,8 @@ class _QuizTrainerState extends State<QuizTrainer> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _generateButtons(_positions.sublist(0, 2), context),
-                _generateButtons(_positions.sublist(2, 4), context)
+                _generateButtons(_positions.sublist(0, 2)),
+                _generateButtons(_positions.sublist(2, 4))
               ],
             )
           ],

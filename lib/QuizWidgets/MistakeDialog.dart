@@ -5,7 +5,7 @@ class MistakeDialog extends StatelessWidget {
   final position;
   const MistakeDialog({Key key, this.position}) : super(key: key);
 
-  Widget _getCardImage(p, context) {
+  Widget _getCardImage(p) {
     final card = CONST.stack.keys.elementAt(p - 1);
     return Expanded(
       child: Container(
@@ -32,9 +32,9 @@ class MistakeDialog extends StatelessWidget {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _getCardImage(position - 1, context),
-          _getCardImage(position, context),
-          _getCardImage(position + 1, context),
+          _getCardImage(position - 1),
+          _getCardImage(position),
+          _getCardImage(position + 1),
         ],
       ),
       actions: <Widget>[
