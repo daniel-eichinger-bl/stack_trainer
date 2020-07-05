@@ -36,7 +36,7 @@ class ButtonRow extends StatelessWidget {
         final ele = elements[idx];
 
         return Container(
-            margin: EdgeInsets.only(top: 32),
+            margin: EdgeInsets.only(top: 16),
             padding: EdgeInsets.all(10),
             width: 150,
             height: 70,
@@ -47,7 +47,7 @@ class ButtonRow extends StatelessWidget {
               disabledColor: _getButtonColor(ele, correctChoice, context),
               child: Text(
                 '$ele',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 20),
               ),
               color: Theme.of(context).accentColor,
             ));

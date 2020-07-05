@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class CardDisplay extends StatelessWidget {
   const CardDisplay({
@@ -21,7 +20,7 @@ class CardDisplay extends StatelessWidget {
               blurRadius: 10,
               offset: Offset(3.0, 2.0))
         ]),
-        margin: EdgeInsets.only(top: 32, bottom: 16),
+        margin: EdgeInsets.only(top: 32, bottom: 32),
         alignment: Alignment.center,
         child: FadeInImage(
             fadeInDuration: Duration(milliseconds: 200),

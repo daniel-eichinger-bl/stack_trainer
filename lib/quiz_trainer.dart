@@ -20,7 +20,7 @@ class _QuizTrainerState extends State<QuizTrainer> {
   int _chosenPosition = -1;
 
   void setupRandom() {
-    final l = List.generate(52, (i) => i);
+    final l = List.generate(51, (i) => i+1);
     l.shuffle();
     final randomPositions = [l[1], l[2], l[3], l[4]];
 
