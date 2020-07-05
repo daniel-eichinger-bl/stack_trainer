@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/QuizWidgets/ButtonRow.dart';
-import 'package:stack_trainer/QuizWidgets/MistakeDialog.dart';
+import 'package:stack_trainer/PositionTrainerWidgets/ButtonRow.dart';
+import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
-import 'QuizWidgets/CardDisplay.dart';
+import 'PositionTrainerWidgets/CardDisplay.dart';
 
-class QuizTrainer extends StatefulWidget {
+class PositionTrainer extends StatefulWidget {
   static const routeName = '/quiz_trainer';
 
   @override
   State<StatefulWidget> createState() {
-    return _QuizTrainerState();
+    return _PositionTrainerState();
   }
 }
 
-class _QuizTrainerState extends State<QuizTrainer> {
+class _PositionTrainerState extends State<PositionTrainer> {
   String _randomCard = '';
   var _positions = [];
   int _chosenPosition = -1;
 
   void setupRandom() {
-    final l = List.generate(51, (i) => i+1);
+    final l = List.generate(51, (i) => i + 1);
     l.shuffle();
     final randomPositions = [l[1], l[2], l[3], l[4]];
 
@@ -92,8 +92,10 @@ class _QuizTrainerState extends State<QuizTrainer> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ButtonRow(_chosenPosition, _randomCard, btnPress, _positions.sublist(0,2)),
-                ButtonRow(_chosenPosition, _randomCard, btnPress, _positions.sublist(2,4)),
+                ButtonRow(_chosenPosition, _randomCard, btnPress,
+                    _positions.sublist(0, 2)),
+                ButtonRow(_chosenPosition, _randomCard, btnPress,
+                    _positions.sublist(2, 4)),
               ],
             )
           ],

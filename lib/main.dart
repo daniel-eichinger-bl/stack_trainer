@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/quiz_trainer.dart';
+import 'package:stack_trainer/position_trainer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(StackTrainer());
@@ -14,8 +14,8 @@ class StackTrainer extends StatelessWidget {
         accentColor: Colors.white,
         textTheme: GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: QuizTrainer.routeName,
-      routes: {QuizTrainer.routeName: (context) => QuizTrainer()},
+      initialRoute: PositionTrainer.routeName,
+      routes: {PositionTrainer.routeName: (context) => PositionTrainer()},
     );
   }
 }
