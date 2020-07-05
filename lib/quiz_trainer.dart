@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stack_trainer/QuizWidgets/ButtonRow.dart';
 import 'package:stack_trainer/QuizWidgets/MistakeDialog.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
@@ -28,46 +29,6 @@ class _QuizTrainerState extends State<QuizTrainer> {
       randomPositions.shuffle();
       _positions = randomPositions;
     });
-  }
-
-  Color _getButtonColor(ele, correct) {
-    if (_chosenPosition == ele) {
-      return correct ? Colors.green : Colors.red;
-    } else {
-      return Theme.of(context).accentColor;
-    }
-  }
-
-  Widget _generateButtons(elements) {
-    final disabled = _chosenPosition != -1 ? true : false;
-    var correct = false;
-    if (_chosenPosition != -1) {
-      correct = CONST.stack[_randomCard] == _chosenPosition;
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(elements.length, (idx) {
-        final ele = elements[idx];
-
-        return Container(
-            margin: EdgeInsets.only(top: 32),
-            padding: EdgeInsets.all(10),
-            width: 150,
-            height: 70,
-            child: RaisedButton(
-              onPressed: disabled ? null : () => btnPress(ele),
-              disabledElevation: 1,
-              disabledTextColor: Colors.black,
-              disabledColor: _getButtonColor(ele, correct),
-              child: Text(
-                '$ele',
-                style: TextStyle(fontSize: 18),
-              ),
-              color: Theme.of(context).accentColor,
-            ));
-      }),
-    );
   }
 
   Future<void> btnPress(position) async {
@@ -131,8 +92,8 @@ class _QuizTrainerState extends State<QuizTrainer> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _generateButtons(_positions.sublist(0, 2)),
-                _generateButtons(_positions.sublist(2, 4))
+                ButtonRow(_chosenPosition, _randomCard, btnPress, _positions.sublist(0,2)),
+                ButtonRow(_chosenPosition, _randomCard, btnPress, _positions.sublist(2,4)),
               ],
             )
           ],
