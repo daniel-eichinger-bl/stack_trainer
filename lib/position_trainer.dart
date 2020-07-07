@@ -15,6 +15,7 @@ class PositionTrainer extends StatefulWidget {
 }
 
 class _PositionTrainerState extends State<PositionTrainer> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   String _randomCard = '';
   var _positions = [];
   int _chosenPosition = -1;
@@ -63,30 +64,43 @@ class _PositionTrainerState extends State<PositionTrainer> {
     }
 
     return Scaffold(
+        key: scaffoldKey,
         backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+          leading: Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: IconButton(
+              icon: Icon(Icons.settings,size: 26,),
+              onPressed: () => scaffoldKey.currentState.openDrawer(),
+              color: Colors.grey,
+            ),
+          ),
+          titleSpacing: 0.0,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('Stack Trainer',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      color: Colors.white,
+                    )),
+                Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Image.asset(
+                      'images/icons/card_icon_red.png',
+                      width: 60,
+                    )),
+              ],
+            ),
+          ),
+        ),
+        drawer: Drawer(child: Text("hello")),
         body: Column(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(top: 42, left: 16, right: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text('Stack Trainer',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white,
-                      )),
-                  Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Image.asset(
-                        'images/icons/card_icon_red.png',
-                        width: 60,
-                      ))
-                ],
-              ),
-            ),
             CardDisplay(randomCard: _randomCard),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
