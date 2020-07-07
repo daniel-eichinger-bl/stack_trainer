@@ -41,7 +41,7 @@ class ButtonRow extends StatelessWidget {
             : CONST.stack.keys.elementAt(ele - 1);
 
         final String card = CONST.stack.keys.elementAt(ele - 1);
-        final value = card[0] != '1' ? card[0] : card.substring(0, 1);
+        final value = card[0] != '1' ? card[0] : card.substring(0, 2);
         final suit = CONST.suitDic[card[card.length-1]];
 
         return Container(
