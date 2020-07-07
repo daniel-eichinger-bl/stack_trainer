@@ -5,8 +5,19 @@ class MistakeDialog extends StatelessWidget {
   final position;
   const MistakeDialog({Key key, this.position}) : super(key: key);
 
+  int _correctIndex(idx) {
+    if (idx <= 0) {
+      return CONST.stack.length;
+    } else if (idx > CONST.stack.length) {
+      return 1;
+    } else {
+      return idx;
+    }
+  }
+
   Widget _getCardImage(p) {
-    final card = CONST.stack.keys.elementAt(p - 1);
+    p = _correctIndex(p);
+    final card = CONST.stack.keys.elementAt(p-1);
     return Expanded(
       child: Container(
         child: Column(
@@ -39,7 +50,11 @@ class MistakeDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         FlatButton(
-            onPressed: () => Navigator.of(context).pop(), child: Text('Ok', style: TextStyle(fontSize: 18, color: Colors.redAccent),))
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(
+              'Ok',
+              style: TextStyle(fontSize: 18, color: Colors.redAccent),
+            ))
       ],
     );
   }

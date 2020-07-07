@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 
 class ButtonRow extends StatelessWidget {
-  final List<int> elements;
+  final List<int> positions;
   final int chosenPosition;
   final String card;
   final void Function(int) callback;
@@ -11,7 +11,7 @@ class ButtonRow extends StatelessWidget {
     this.chosenPosition,
     this.card,
     this.callback,
-    this.elements,
+    this.positions,
   );
 
   Color _getButtonColor(ele, correct, context) {
@@ -32,8 +32,8 @@ class ButtonRow extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(elements.length, (idx) {
-        final ele = elements[idx];
+      children: List.generate(positions.length, (idx) {
+        final ele = positions[idx];
 
         return Container(
             margin: EdgeInsets.only(top: 16),

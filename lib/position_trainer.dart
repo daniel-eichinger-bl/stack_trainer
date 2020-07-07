@@ -20,10 +20,9 @@ class _PositionTrainerState extends State<PositionTrainer> {
   int _chosenPosition = -1;
 
   void setupRandom() {
-    final l = List.generate(51, (i) => i + 1);
+    final l = List.generate(52, (i) => i + 1);
     l.shuffle();
     final randomPositions = [l[1], l[2], l[3], l[4]];
-
     setState(() {
       _randomCard = CONST.stack.keys.elementAt(randomPositions[0] - 1);
       randomPositions.shuffle();
