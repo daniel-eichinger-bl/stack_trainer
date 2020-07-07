@@ -36,7 +36,13 @@ class ButtonRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(positions.length, (idx) {
         final ele = positions[idx];
-        final display = mode == CONST.TrainModes.cards ? ele : CONST.stack.keys.elementAt(ele-1);
+        final display = mode == CONST.TrainModes.cards
+            ? ele
+            : CONST.stack.keys.elementAt(ele - 1);
+
+        final String card = CONST.stack.keys.elementAt(ele - 1);
+        final value = card[0] != '1' ? card[0] : card.substring(0, 1);
+        final suit = CONST.suitDic[card[card.length-1]];
 
         return Container(
             margin: EdgeInsets.only(top: 16),
@@ -48,9 +54,20 @@ class ButtonRow extends StatelessWidget {
               disabledElevation: 1,
               disabledTextColor: Colors.black,
               disabledColor: _getButtonColor(ele, correctChoice, context),
-              child: Text(
-                '$display',
-                style: TextStyle(fontSize: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    mode == CONST.TrainModes.indexes ? '$value' : '$display',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  mode == CONST.TrainModes.indexes
+                      ? Image.asset(
+                          'images/poker_cards/$suit.png',
+                          width: 20,
+                        )
+                      : Container(),
+                ],
               ),
               color: Theme.of(context).accentColor,
             ));

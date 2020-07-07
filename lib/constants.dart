@@ -8,9 +8,9 @@ const modeDic = {
 };
 
 const modeDicRev = {
-  0 : TrainModes.cards,
-  1 : TrainModes.mix,
-  2 : TrainModes.indexes
+  0: TrainModes.cards,
+  1: TrainModes.mix,
+  2: TrainModes.indexes
 };
 
 const stack = {
@@ -37,7 +37,7 @@ const stack = {
   '3S': 21,
   '8S': 22,
   '6H': 23,
-  'XC': 24,
+  '10C': 24,
   '5D': 25,
   'KD': 26,
   '2C': 27,
@@ -47,11 +47,11 @@ const stack = {
   'KS': 31,
   'JD': 32,
   '8C': 33,
-  'XS': 34,
+  '10S': 34,
   'KH': 35,
   'JC': 36,
   '7S': 37,
-  'XH': 38,
+  '10H': 38,
   'AD': 39,
   '4S': 40,
   '7H': 41,
@@ -62,8 +62,10 @@ const stack = {
   'QD': 46,
   '7C': 47,
   'QS': 48,
-  'XD': 49,
+  '10D': 49,
   '6C': 50,
   'AH': 51,
   '9D': 52
 };
+
+const suitDic = {'H': 'hearts', 'C': 'clubs', 'S': 'spades', 'D': 'diamonds'};
