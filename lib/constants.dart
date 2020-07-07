@@ -1,6 +1,17 @@
 library constants;
 
 enum TrainModes { cards, mix, indexes }
+const modeDic = {
+  TrainModes.cards: 0.0,
+  TrainModes.mix: 1.0,
+  TrainModes.indexes: 2.0
+};
+
+const modeDicRev = {
+  0 : TrainModes.cards,
+  1 : TrainModes.mix,
+  2 : TrainModes.indexes
+};
 
 const stack = {
   '4C': 1,

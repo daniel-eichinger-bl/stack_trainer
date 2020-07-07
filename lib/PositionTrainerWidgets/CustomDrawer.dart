@@ -3,8 +3,8 @@ import 'package:stack_trainer/PositionTrainerWidgets/ModeSlider.dart';
 
 class CustomDrawer extends StatelessWidget {
   var _sliderCallback;
-
-  CustomDrawer(this._sliderCallback);
+  var _mode;
+  CustomDrawer(this._mode, this._sliderCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CustomDrawer extends StatelessWidget {
               child: Text('[Questions]', style: TextStyle(color: Colors.white, fontSize: 16),)),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ModeSlider(_sliderCallback),
+              child: ModeSlider(_mode, _sliderCallback),
             )
           ],
         ),

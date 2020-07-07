@@ -18,7 +18,7 @@ class PositionTrainer extends StatefulWidget {
 
 class _PositionTrainerState extends State<PositionTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  
+
   String card = '';
   int _position = -1;
   var _positions = [];
@@ -55,8 +55,7 @@ class _PositionTrainerState extends State<PositionTrainer> {
       await showDialog(
           context: context,
           barrierDismissible: true,
-          builder: (context) =>
-              MistakeDialog(position: CONST.stack[card]));
+          builder: (context) => MistakeDialog(position: CONST.stack[card]));
       setState(() {
         _position = -1;
       });
@@ -79,17 +78,15 @@ class _PositionTrainerState extends State<PositionTrainer> {
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
-        drawer: CustomDrawer(sliderOnChange),
+        drawer: CustomDrawer(_mode, sliderOnChange),
         body: Column(
           children: <Widget>[
             CardDisplay(randomCard: card),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ButtonRow(_position, card, btnPress,
-                    _positions.sublist(0, 2)),
-                ButtonRow(_position, card, btnPress,
-                    _positions.sublist(2, 4)),
+                ButtonRow(_position, card, btnPress, _positions.sublist(0, 2)),
+                ButtonRow(_position, card, btnPress, _positions.sublist(2, 4)),
               ],
             )
           ],

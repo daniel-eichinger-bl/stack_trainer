@@ -2,37 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/SliderThumb.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 
-class ModeSlider extends StatefulWidget {
+class ModeSlider extends StatelessWidget {
   final _sliderCallback;
+  final _mode;
+  ModeSlider(this._mode, this._sliderCallback);
 
-  ModeSlider(this._sliderCallback);
-
-  @override
-  _ModeSliderState createState() => _ModeSliderState();
-}
-
-class _ModeSliderState extends State<ModeSlider> {
-  var _sliderValue = 1.0;
-
-  void setMode(value) {
-    setState(() {
-      _sliderValue = value;
-    });
-
-    var mode = CONST.TrainModes.mix;
-    switch (value.round()) {
-      case 0:
-        mode = CONST.TrainModes.cards;
-        break;
-      case 1:
-        mode = CONST.TrainModes.mix;
-        break;
-      case 2:
-        mode = CONST.TrainModes.indexes;
-        break;
-    }
-    widget._sliderCallback(mode);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +29,8 @@ class _ModeSliderState extends State<ModeSlider> {
           min: 0,
           max: 2,
           divisions: 2,
-          value: _sliderValue,
-          onChanged: setMode,
+          value: CONST.modeDic[_mode],
+          onChanged: (v) => _sliderCallback(CONST.modeDicRev[v.round()]),
         ));
   }
 }
