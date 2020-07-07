@@ -15,7 +15,7 @@ class MistakeDialog extends StatelessWidget {
     }
   }
 
-  Widget _getCardImage(p) {
+  Widget _getCardImage(p, [color=Colors.white]) {
     p = _correctIndex(p);
     final card = CONST.stack.keys.elementAt(p-1);
     return Expanded(
@@ -29,7 +29,7 @@ class MistakeDialog extends StatelessWidget {
             ),
             Text(
               '$p',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color),
             ),
           ],
         ),
@@ -40,21 +40,19 @@ class MistakeDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _getCardImage(position - 1),
-          _getCardImage(position),
+          _getCardImage(position, Colors.red),
           _getCardImage(position + 1),
         ],
       ),
       actions: <Widget>[
-        FlatButton(
+        IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(
-              'Ok',
-              style: TextStyle(fontSize: 18, color: Colors.redAccent),
-            ))
+            icon: Icon(Icons.arrow_forward, color: Colors.red)),
       ],
     );
   }

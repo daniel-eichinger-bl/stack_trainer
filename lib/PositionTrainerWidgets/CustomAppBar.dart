@@ -16,13 +16,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: 8, right: 8),
+      margin: EdgeInsets.only(top: 28, left: 8, right: 8),
       child: Row(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(right: 8),
             child: IconButton(
-              icon: Icon(Icons.settings_applications, size: 35, color: Colors.red),
+              icon: Icon(Icons.menu, size: 35, color: Colors.red),
               onPressed: () => scaffoldKey.currentState.openDrawer(),
               color: Colors.grey,
             ),

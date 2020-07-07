@@ -22,6 +22,15 @@ class _PositionTrainerState extends State<PositionTrainer> {
   var _positions = [];
   int _chosenPosition = -1;
 
+  double _sliderValue = 0.0;
+
+  void sliderOnChange(value) {
+    print(value);
+    setState(() {
+      _sliderValue = value;
+    });
+  }
+
   void setupRandom() {
     final l = List.generate(52, (i) => i + 1);
     l.shuffle();
@@ -68,8 +77,8 @@ class _PositionTrainerState extends State<PositionTrainer> {
     return Scaffold(
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: CustomAppBar(height: 50, scaffoldKey: scaffoldKey),
-        drawer: CustomDrawer(),
+        appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
+        drawer: CustomDrawer(_sliderValue, sliderOnChange),
         body: Column(
           children: <Widget>[
             CardDisplay(randomCard: _randomCard),
