@@ -1,5 +1,7 @@
 library constants;
 
+enum TrainModes { cards, mix, indexes }
+
 const stack = {
   '4C': 1,
   '2H': 2,

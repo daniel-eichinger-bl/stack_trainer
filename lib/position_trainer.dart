@@ -21,13 +21,12 @@ class _PositionTrainerState extends State<PositionTrainer> {
   String _randomCard = '';
   var _positions = [];
   int _chosenPosition = -1;
-
-  double _sliderValue = 0.0;
+  CONST.TrainModes _mode = CONST.TrainModes.mix;
 
   void sliderOnChange(value) {
     print(value);
     setState(() {
-      _sliderValue = value;
+      _mode = value;
     });
   }
 
@@ -78,7 +77,7 @@ class _PositionTrainerState extends State<PositionTrainer> {
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
-        drawer: CustomDrawer(_sliderValue, sliderOnChange),
+        drawer: CustomDrawer(sliderOnChange),
         body: Column(
           children: <Widget>[
             CardDisplay(randomCard: _randomCard),
