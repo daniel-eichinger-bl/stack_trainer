@@ -18,9 +18,10 @@ class PositionTrainer extends StatefulWidget {
 
 class _PositionTrainerState extends State<PositionTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  String _randomCard = '';
+  
+  String card = '';
+  int _position = -1;
   var _positions = [];
-  int _chosenPosition = -1;
   CONST.TrainModes _mode = CONST.TrainModes.mix;
 
   void sliderOnChange(value) {
@@ -34,8 +35,9 @@ class _PositionTrainerState extends State<PositionTrainer> {
     final l = List.generate(52, (i) => i + 1);
     l.shuffle();
     final randomPositions = [l[1], l[2], l[3], l[4]];
+
     setState(() {
-      _randomCard = CONST.stack.keys.elementAt(randomPositions[0] - 1);
+      card = CONST.stack.keys.elementAt(randomPositions[0] - 1);
       randomPositions.shuffle();
       _positions = randomPositions;
     });
@@ -43,10 +45,10 @@ class _PositionTrainerState extends State<PositionTrainer> {
 
   Future<void> btnPress(position) async {
     setState(() {
-      _chosenPosition = position;
+      _position = position;
     });
 
-    final correct = CONST.stack[_randomCard] == _chosenPosition;
+    final correct = CONST.stack[card] == _position;
     if (correct) {
       Timer(new Duration(milliseconds: 250), handleTimeout);
     } else {
@@ -54,22 +56,22 @@ class _PositionTrainerState extends State<PositionTrainer> {
           context: context,
           barrierDismissible: true,
           builder: (context) =>
-              MistakeDialog(position: CONST.stack[_randomCard]));
+              MistakeDialog(position: CONST.stack[card]));
       setState(() {
-        _chosenPosition = -1;
+        _position = -1;
       });
     }
   }
 
   void handleTimeout() {
     setState(() {
-      _chosenPosition = -1;
+      _position = -1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_chosenPosition == -1) {
+    if (_position == -1) {
       setupRandom();
     }
 
@@ -80,13 +82,13 @@ class _PositionTrainerState extends State<PositionTrainer> {
         drawer: CustomDrawer(sliderOnChange),
         body: Column(
           children: <Widget>[
-            CardDisplay(randomCard: _randomCard),
+            CardDisplay(randomCard: card),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ButtonRow(_chosenPosition, _randomCard, btnPress,
+                ButtonRow(_position, card, btnPress,
                     _positions.sublist(0, 2)),
-                ButtonRow(_chosenPosition, _randomCard, btnPress,
+                ButtonRow(_position, card, btnPress,
                     _positions.sublist(2, 4)),
               ],
             )
