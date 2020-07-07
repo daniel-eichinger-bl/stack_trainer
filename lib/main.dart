@@ -12,6 +12,7 @@ class StackTrainer extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.purple[800],
         accentColor: Colors.white,
+        backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
         textTheme: GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: PositionTrainer.routeName,

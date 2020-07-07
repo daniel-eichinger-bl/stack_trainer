@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ButtonRow.dart';
+import 'package:stack_trainer/PositionTrainerWidgets/CustomAppBar.dart';
+import 'package:stack_trainer/PositionTrainerWidgets/CustomDrawer.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
@@ -15,7 +17,7 @@ class PositionTrainer extends StatefulWidget {
 }
 
 class _PositionTrainerState extends State<PositionTrainer> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   String _randomCard = '';
   var _positions = [];
   int _chosenPosition = -1;
@@ -65,40 +67,9 @@ class _PositionTrainerState extends State<PositionTrainer> {
 
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
-          leading: Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: IconButton(
-              icon: Icon(Icons.settings,size: 26,),
-              onPressed: () => scaffoldKey.currentState.openDrawer(),
-              color: Colors.grey,
-            ),
-          ),
-          titleSpacing: 0.0,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Text('Stack Trainer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 26,
-                      color: Colors.white,
-                    )),
-                Container(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Image.asset(
-                      'images/icons/card_icon_red.png',
-                      width: 60,
-                    )),
-              ],
-            ),
-          ),
-        ),
-        drawer: Drawer(child: Text("hello")),
+        backgroundColor: Theme.of(context).backgroundColor,
+        appBar: CustomAppBar(height: 50, scaffoldKey: scaffoldKey),
+        drawer: CustomDrawer(),
         body: Column(
           children: <Widget>[
             CardDisplay(randomCard: _randomCard),
