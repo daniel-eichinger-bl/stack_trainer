@@ -52,6 +52,8 @@ class _PositionTrainerState extends State<PositionTrainer> {
 
       if (_mode == CONST.TrainModes.mix) {
         _subMode = subModes[random.nextInt(subModes.length)];
+      } else {
+        _subMode = _mode;
       }
     });
   }
