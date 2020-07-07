@@ -6,8 +6,10 @@ class ButtonRow extends StatelessWidget {
   final int chosenPosition;
   final String card;
   final void Function(int) callback;
+  final mode;
 
   const ButtonRow(
+    this.mode,
     this.chosenPosition,
     this.card,
     this.callback,
@@ -34,6 +36,7 @@ class ButtonRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(positions.length, (idx) {
         final ele = positions[idx];
+        final display = mode == CONST.TrainModes.cards ? ele : CONST.stack.keys.elementAt(ele-1);
 
         return Container(
             margin: EdgeInsets.only(top: 16),
@@ -46,7 +49,7 @@ class ButtonRow extends StatelessWidget {
               disabledTextColor: Colors.black,
               disabledColor: _getButtonColor(ele, correctChoice, context),
               child: Text(
-                '$ele',
+                '$display',
                 style: TextStyle(fontSize: 20),
               ),
               color: Theme.of(context).accentColor,

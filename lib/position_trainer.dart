@@ -44,7 +44,7 @@ class _PositionTrainerState extends State<PositionTrainer> {
 
   void newRound() {
     final randomPositions = getRandomPositions();
-    
+
     setState(() {
       card = CONST.stack.keys.elementAt(randomPositions[0] - 1);
       randomPositions.shuffle();
@@ -100,10 +100,8 @@ class _PositionTrainerState extends State<PositionTrainer> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ButtonRow(
-                    _chosenPosition, card, btnPress, _positions.sublist(0, 2)),
-                ButtonRow(
-                    _chosenPosition, card, btnPress, _positions.sublist(2, 4)),
+                ButtonRow(_subMode,_chosenPosition, card, btnPress, _positions.sublist(0, 2)),
+                ButtonRow(_subMode,_chosenPosition, card, btnPress, _positions.sublist(2, 4)),
               ],
             )
           ],
