@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/position_trainer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stack_trainer/stack_trainer.dart';
 
-void main() => runApp(StackTrainer());
+void main() => runApp(StackApp());
 
-class StackTrainer extends StatelessWidget {
+class StackApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,8 +15,8 @@ class StackTrainer extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
         textTheme: GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: PositionTrainer.routeName,
-      routes: {PositionTrainer.routeName: (context) => PositionTrainer()},
+      initialRoute: StackTrainer.routeName,
+      routes: {StackTrainer.routeName: (context) => StackTrainer()},
     );
   }
 }

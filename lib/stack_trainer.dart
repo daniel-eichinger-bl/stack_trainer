@@ -10,16 +10,16 @@ import 'dart:async';
 import 'constants.dart' as CONST;
 import 'PositionTrainerWidgets/CardDisplay.dart';
 
-class PositionTrainer extends StatefulWidget {
-  static const routeName = '/quiz_trainer';
+class StackTrainer extends StatefulWidget {
+  static const routeName = '/stack_trainer';
 
   @override
   State<StatefulWidget> createState() {
-    return _PositionTrainerState();
+    return _StackTrainerState();
   }
 }
 
-class _PositionTrainerState extends State<PositionTrainer> {
+class _StackTrainerState extends State<StackTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   static final random = new Random();
   static final subModes = [CONST.TrainModes.cards, CONST.TrainModes.indexes];
