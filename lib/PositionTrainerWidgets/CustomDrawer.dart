@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ModeSlider.dart';
 
 class CustomDrawer extends StatelessWidget {
-  var _sliderCallback;
-  var _mode;
+  final _sliderCallback;
+  final _mode;
   CustomDrawer(this._mode, this._sliderCallback);
 
   @override

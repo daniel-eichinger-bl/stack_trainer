@@ -7,7 +7,7 @@ class IndexDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 306,
       width: 200,
       margin: EdgeInsets.only(top: 32, bottom: 32),
       decoration: BoxDecoration(boxShadow: [

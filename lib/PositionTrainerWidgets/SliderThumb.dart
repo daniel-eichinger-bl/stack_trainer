@@ -63,11 +63,11 @@ class CustomSliderThumbRect extends SliderComponentShape {
 
   String getValue(double value) {
     if (value == 0) {
-      return 'Card';
+      return 'Index';
     } else if (value == 0.5) {
       return 'Mix';
     } else {
-      return 'Index';
+      return 'Card';
     }
   }
 }

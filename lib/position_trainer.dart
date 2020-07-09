@@ -23,12 +23,13 @@ class _PositionTrainerState extends State<PositionTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   static final random = new Random();
   static final subModes = [CONST.TrainModes.cards, CONST.TrainModes.indexes];
+  
+  CONST.TrainModes _mode = CONST.TrainModes.mix;
+  CONST.TrainModes _subMode = CONST.TrainModes.indexes;
 
   String card = '';
   int _chosenPosition = -1;
   var _positions = [];
-  CONST.TrainModes _mode = CONST.TrainModes.mix;
-  CONST.TrainModes _subMode = CONST.TrainModes.cards;
 
   void sliderOnChange(value) {
     setState(() {

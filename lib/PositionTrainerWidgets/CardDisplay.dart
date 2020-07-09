@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CardDisplay extends StatelessWidget {
+  final String _randomCard;
+
   const CardDisplay({
     Key key,
     @required String randomCard,
   })  : _randomCard = randomCard,
         super(key: key);
-
-  final String _randomCard;
 
   @override
   Widget build(BuildContext context) {
