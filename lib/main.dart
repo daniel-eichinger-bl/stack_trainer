@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stack_trainer/StorageUtil.dart';
 import 'package:stack_trainer/stack_trainer.dart';
 
-void main() => runApp(StackApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageService.getInstance();
+  runApp(StackApp());
+}
 
 class StackApp extends StatelessWidget {
   @override
@@ -13,7 +18,8 @@ class StackApp extends StatelessWidget {
         primaryColor: Colors.purple[800],
         accentColor: Colors.white,
         backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
-        textTheme: GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
+        textTheme:
+            GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: StackTrainer.routeName,
       routes: {StackTrainer.routeName: (context) => StackTrainer()},

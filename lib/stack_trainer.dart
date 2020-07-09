@@ -6,6 +6,7 @@ import 'package:stack_trainer/PositionTrainerWidgets/CustomAppBar.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/CustomDrawer.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/IndexDisplay.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
+import 'package:stack_trainer/StorageUtil.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
 import 'PositionTrainerWidgets/CardDisplay.dart';
@@ -23,10 +24,10 @@ class _StackTrainerState extends State<StackTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   static final random = new Random();
   static final subModes = [CONST.TrainModes.cards, CONST.TrainModes.indexes];
-  
   CONST.TrainModes _mode = CONST.TrainModes.mix;
   CONST.TrainModes _subMode = CONST.TrainModes.indexes;
 
+  String _stack = 'Mnemonica';
   String card = '';
   int _chosenPosition = -1;
   var _positions = [];
@@ -35,6 +36,13 @@ class _StackTrainerState extends State<StackTrainer> {
     setState(() {
       _mode = value;
     });
+  }
+
+  void stackOnChange(value) {
+    setState(() {
+      _stack = value;
+    });
+    StorageService.putString('stack', value);
   }
 
   List<int> getRandomPositions() {
@@ -86,6 +94,10 @@ class _StackTrainerState extends State<StackTrainer> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _stack = StorageService.getString('stack',defValue: 'Mnemonica');
+    });
+
     if (_chosenPosition == -1) {
       newRound();
     }
@@ -94,7 +106,7 @@ class _StackTrainerState extends State<StackTrainer> {
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
-        drawer: CustomDrawer(_mode, sliderOnChange),
+        drawer: CustomDrawer(_mode, sliderOnChange, _stack, stackOnChange),
         body: Column(
           children: <Widget>[
             _subMode == CONST.TrainModes.cards

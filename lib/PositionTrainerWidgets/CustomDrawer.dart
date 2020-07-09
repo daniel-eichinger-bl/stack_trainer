@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ModeSlider.dart';
 
+import 'StackDropdownButton.dart';
+
 class CustomDrawer extends StatelessWidget {
   final _sliderCallback;
   final _mode;
-  CustomDrawer(this._mode, this._sliderCallback);
+  final _stack;
+  final _stackCallback;
+  CustomDrawer(this._mode, this._sliderCallback, this._stack, this._stackCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,15 @@ class CustomDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ModeSlider(_mode, _sliderCallback),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 8, left:8),
+              child: Text('[Stack]', style: TextStyle(color: Colors.white, fontSize: 16),),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: StackDropdownButton(_stack, _stackCallback),
+            ),
           ],
         ),
       ),
