@@ -20,7 +20,7 @@ class StackApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Stack Trainer',
         theme: ThemeData(
-          primaryColor: Colors.purple[800],
+          primaryColor: Colors.white,
           accentColor: Colors.white,
           backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
           textTheme:

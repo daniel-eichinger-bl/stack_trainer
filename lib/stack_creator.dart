@@ -8,10 +8,29 @@ class StackCreator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: StackAppBar(height: 80,),
-      body: Text(
-        "Test",
-        style: TextStyle(color: Colors.white),
+      appBar: StackAppBar(
+        height: 80,
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Name',
+                labelStyle: TextStyle(color: Colors.white),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 1.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 1.0),
+                ),
+              ),
+              autofocus: true,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }
