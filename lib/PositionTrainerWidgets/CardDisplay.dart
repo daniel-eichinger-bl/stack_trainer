@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CardDisplay extends StatelessWidget {
-  final String _randomCard;
+  final String card;
 
-  const CardDisplay({
-    Key key,
-    @required String randomCard,
-  })  : _randomCard = randomCard,
-        super(key: key);
+  const CardDisplay(this.card);
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +22,6 @@ class CardDisplay extends StatelessWidget {
             fadeInDuration: Duration(milliseconds: 200),
             fadeOutDuration: Duration(milliseconds: 200),
             placeholder: AssetImage('images/poker_cards/blank.png'),
-            image: AssetImage('images/poker_cards/$_randomCard.png')));
+            image: AssetImage('images/poker_cards/$card.png')));
   }
 }

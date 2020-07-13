@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ButtonRow.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/CustomAppBar.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/CustomDrawer.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/IndexDisplay.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
 import 'package:stack_trainer/StorageUtil.dart';
+import 'package:stack_trainer/models/GameRound.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
 import 'PositionTrainerWidgets/CardDisplay.dart';
@@ -22,103 +24,45 @@ class StackTrainer extends StatefulWidget {
 
 class _StackTrainerState extends State<StackTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final random = new Random();
-  static final subModes = [CONST.TrainModes.cards, CONST.TrainModes.indexes];
-  CONST.TrainModes _mode = CONST.TrainModes.mix;
-  CONST.TrainModes _subMode = CONST.TrainModes.indexes;
 
-  String _stack = 'Mnemonica';
-  String card = '';
-  int _chosenPosition = -1;
-  var _positions = [];
-
-  void sliderOnChange(value) {
-    setState(() {
-      _mode = value;
-    });
-  }
-
-  void stackOnChange(value) {
-    setState(() {
-      _stack = value;
-    });
-    StorageService.putString('stack', value);
-  }
-
-  List<int> getRandomPositions() {
-    final l = List.generate(52, (i) => i + 1);
-    l.shuffle();
-    return [l[1], l[2], l[3], l[4]];
-  }
-
-  void newRound() {
-    final randomPositions = getRandomPositions();
-
-    setState(() {
-      card = CONST.stack.keys.elementAt(randomPositions[0] - 1);
-      randomPositions.shuffle();
-      _positions = randomPositions;
-
-      if (_mode == CONST.TrainModes.mix) {
-        _subMode = subModes[random.nextInt(subModes.length)];
-      } else {
-        _subMode = _mode;
-      }
-    });
-  }
-
-  Future<void> btnPress(position) async {
-    setState(() {
-      _chosenPosition = position;
-    });
-
-    final correct = CONST.stack[card] == _chosenPosition;
-    if (correct) {
-      Timer(new Duration(milliseconds: 250), handleTimeout);
-    } else {
-      await showDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (context) => MistakeDialog(position: CONST.stack[card]));
-      setState(() {
-        _chosenPosition = -1;
-      });
-    }
-  }
-
-  void handleTimeout() {
-    setState(() {
-      _chosenPosition = -1;
-    });
+  Future<void> showMistakeDialog(String card, var callback) async {
+    await showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) => MistakeDialog(position: CONST.stack[card], callback: callback));
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      _stack = StorageService.getString('stack',defValue: 'Mnemonica');
-    });
+    // setState(() {
+    //   _stack = StorageService.getString('stack', defValue: 'Mnemonica');
+    // });
 
-    if (_chosenPosition == -1) {
-      newRound();
+    final round = Provider.of<GameRound>(context);
+
+    if (round.showDialog) {
+      Future.delayed(Duration.zero, () => showMistakeDialog(round.card, round.newRound));
     }
 
     return Scaffold(
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
-        drawer: CustomDrawer(_mode, sliderOnChange, _stack, stackOnChange),
+        drawer: CustomDrawer(),
         body: Column(
           children: <Widget>[
-            _subMode == CONST.TrainModes.cards
-                ? CardDisplay(randomCard: card)
-                : IndexDisplay(CONST.stack[card]),
+            round.subMode == CONST.TrainModes.cards
+                ? CardDisplay(round.card)
+                : IndexDisplay(CONST.stack[round.card]),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ButtonRow(_subMode,_chosenPosition, card, btnPress, _positions.sublist(0, 2)),
-                ButtonRow(_subMode,_chosenPosition, card, btnPress, _positions.sublist(2, 4)),
+                ButtonRow(round.subMode, round.chosenPosition, round.card,
+                    round.setChosenPosition, round.positions.sublist(0, 2)),
+                ButtonRow(round.subMode, round.chosenPosition, round.card,
+                    round.setChosenPosition, round.positions.sublist(2, 4)),
               ],
-            )
+            ),
           ],
         ));
   }

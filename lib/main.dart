@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:stack_trainer/StorageUtil.dart';
+import 'package:stack_trainer/models/GameRound.dart';
 import 'package:stack_trainer/stack_trainer.dart';
 
 void main() async {
@@ -12,17 +14,20 @@ void main() async {
 class StackApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stack Trainer',
-      theme: ThemeData(
-        primaryColor: Colors.purple[800],
-        accentColor: Colors.white,
-        backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
-        textTheme:
-            GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
+    return ChangeNotifierProvider<GameRound>(
+      create: (context) => GameRound(),
+      child: MaterialApp(
+        title: 'Stack Trainer',
+        theme: ThemeData(
+          primaryColor: Colors.purple[800],
+          accentColor: Colors.white,
+          backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+          textTheme:
+              GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
+        ),
+        initialRoute: StackTrainer.routeName,
+        routes: {StackTrainer.routeName: (context) => StackTrainer()},
       ),
-      initialRoute: StackTrainer.routeName,
-      routes: {StackTrainer.routeName: (context) => StackTrainer()},
     );
   }
 }

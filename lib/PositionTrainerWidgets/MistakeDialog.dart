@@ -3,7 +3,9 @@ import 'package:stack_trainer/constants.dart' as CONST;
 
 class MistakeDialog extends StatelessWidget {
   final position;
-  const MistakeDialog({Key key, this.position}) : super(key: key);
+  final callback;
+  const MistakeDialog({Key key, this.position, this.callback})
+      : super(key: key);
 
   int _correctIndex(idx) {
     if (idx <= 0) {
@@ -15,9 +17,9 @@ class MistakeDialog extends StatelessWidget {
     }
   }
 
-  Widget _getCardImage(p, [color=Colors.white]) {
+  Widget _getCardImage(p, [color = Colors.white]) {
     p = _correctIndex(p);
-    final card = CONST.stack.keys.elementAt(p-1);
+    final card = CONST.stack.keys.elementAt(p - 1);
     return Expanded(
       child: Container(
         child: Column(
@@ -29,7 +31,8 @@ class MistakeDialog extends StatelessWidget {
             ),
             Text(
               '$p',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color),
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, color: color),
             ),
           ],
         ),
@@ -51,7 +54,10 @@ class MistakeDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         IconButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              callback();
+              Navigator.of(context).pop();
+            },
             icon: Icon(Icons.arrow_forward, color: Colors.red)),
       ],
     );
