@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stack_trainer/StorageUtil.dart';
 import 'package:stack_trainer/models/GameRound.dart';
+import 'package:stack_trainer/stack_creator.dart';
 import 'package:stack_trainer/stack_trainer.dart';
 
 void main() async {
@@ -26,7 +27,10 @@ class StackApp extends StatelessWidget {
               GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
         ),
         initialRoute: StackTrainer.routeName,
-        routes: {StackTrainer.routeName: (context) => StackTrainer()},
+        routes: {
+          StackTrainer.routeName: (context) => StackTrainer(),
+          StackCreator.routeName: (context) => StackCreator()
+        },
       ),
     );
   }

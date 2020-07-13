@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ModeSlider.dart';
+import 'package:stack_trainer/stack_creator.dart';
 
 import 'StackDropdownButton.dart';
 
@@ -32,20 +33,42 @@ class CustomDrawer extends StatelessWidget {
                   BoxDecoration(color: Theme.of(context).backgroundColor),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8, left: 8),
-              child: Text('[Questions]', style: TextStyle(color: Colors.white, fontSize: 16),)),
+                margin: EdgeInsets.only(top: 8, left: 8),
+                child: Text(
+                  '[Questions]',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ModeSlider(),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8, left:8),
-              child: Text('[Stack]', style: TextStyle(color: Colors.white, fontSize: 16),),
+              margin: EdgeInsets.only(top: 8, left: 8),
+              child: Text(
+                '[Stack]',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(horizontal: 32),
               child: StackDropdownButton(),
             ),
+            Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(left: 18),
+              child: FlatButton.icon(
+                onPressed: () =>
+                    Navigator.pushNamed(context, StackCreator.routeName),
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.red,
+                ),
+                label: Text(
+                  "Add Stack",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
           ],
         ),
       ),

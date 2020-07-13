@@ -10,23 +10,16 @@ import 'dart:async';
 import 'constants.dart' as CONST;
 import 'PositionTrainerWidgets/CardDisplay.dart';
 
-class StackTrainer extends StatefulWidget {
+class StackTrainer extends StatelessWidget {
   static const routeName = '/stack_trainer';
-
-  @override
-  State<StatefulWidget> createState() {
-    return _StackTrainerState();
-  }
-}
-
-class _StackTrainerState extends State<StackTrainer> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> showMistakeDialog(String card, var callback) async {
+  Future<void> showMistakeDialog(var context, String card, var callback) async {
     await showDialog(
         context: context,
         barrierDismissible: true,
-        builder: (context) => MistakeDialog(position: CONST.stack[card], callback: callback));
+        builder: (context) =>
+            MistakeDialog(position: CONST.stack[card], callback: callback));
   }
 
   @override
@@ -34,7 +27,8 @@ class _StackTrainerState extends State<StackTrainer> {
     final round = Provider.of<GameRound>(context);
 
     if (round.showDialog) {
-      Future.delayed(Duration.zero, () => showMistakeDialog(round.card, round.newRound));
+      Future.delayed(Duration.zero,
+          () => showMistakeDialog(context, round.card, round.newRound));
     }
 
     return Scaffold(
