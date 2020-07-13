@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/ButtonRow.dart';
@@ -7,7 +5,6 @@ import 'package:stack_trainer/PositionTrainerWidgets/CustomAppBar.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/CustomDrawer.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/IndexDisplay.dart';
 import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
-import 'package:stack_trainer/StorageUtil.dart';
 import 'package:stack_trainer/models/GameRound.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
@@ -34,10 +31,6 @@ class _StackTrainerState extends State<StackTrainer> {
 
   @override
   Widget build(BuildContext context) {
-    // setState(() {
-    //   _stack = StorageService.getString('stack', defValue: 'Mnemonica');
-    // });
-
     final round = Provider.of<GameRound>(context);
 
     if (round.showDialog) {

@@ -13,7 +13,7 @@ class GameRound with ChangeNotifier {
   String stack = 'Mnemonica';
   String card = '';
   int chosenPosition = -1;
-  var positions = [];
+  List<int> positions = [];
   bool showDialog = false;
 
   GameRound() {
