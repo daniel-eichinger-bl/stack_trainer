@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class StackAppBar extends StatelessWidget implements PreferredSizeWidget {
+class StackCreatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
 
-  StackAppBar({
+  StackCreatorAppBar({
     Key key,
     @required this.height,
   }) : super(key: key);
@@ -14,17 +14,13 @@ class StackAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 28, left: 8, right: 8),
+      margin: EdgeInsets.only(top: 28, left: 16, right: 8),
       child: Row(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(right: 8),
-            child: IconButton(
-              icon: Icon(Icons.add_to_photos, size: 35, color: Colors.red),
-              onPressed: () => null,
-              color: Colors.grey,
+            child: Icon(Icons.add_to_photos, size: 35, color: Colors.red),
             ),
-          ),
           Text('Stack Creator',
               style: TextStyle(
                 fontWeight: FontWeight.bold,

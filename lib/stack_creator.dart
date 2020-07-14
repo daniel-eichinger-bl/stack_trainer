@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/StackManagerWidgets/StackAppBar.dart';
+import 'package:stack_trainer/StackManagerWidgets/stack_creator_appbar.dart';
+import 'StackManagerWidgets/stack_input.dart';
 
 class StackCreator extends StatelessWidget {
   static const routeName = '/stack_manager';
@@ -8,14 +9,16 @@ class StackCreator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: StackAppBar(
+      appBar: StackCreatorAppBar(
         height: 80,
       ),
-      body: Column(
+      body: 
+       Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: TextField(
+              onSubmitted: (value) => print(value),
               decoration: InputDecoration(
                 labelText: 'Name',
                 labelStyle: TextStyle(color: Colors.white),
@@ -30,6 +33,7 @@ class StackCreator extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
           ),
+          Expanded(child: StackInput())
         ],
       ),
     );
