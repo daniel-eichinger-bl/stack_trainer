@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/StackManagerWidgets/stack_creator_appbar.dart';
-import 'StackManagerWidgets/stack_input.dart';
+import 'package:stack_trainer/stack_manager_widgets/stack_creator_appbar.dart';
+import 'stack_manager_widgets/stack_input.dart';
 
 class StackCreator extends StatelessWidget {
   static const routeName = '/stack_manager';

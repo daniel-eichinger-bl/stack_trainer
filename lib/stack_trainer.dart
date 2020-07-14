@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/ButtonRow.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/CustomAppBar.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/CustomDrawer.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/IndexDisplay.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/MistakeDialog.dart';
+import 'package:stack_trainer/stack_trainer_widgets/ButtonRow.dart';
+import 'package:stack_trainer/stack_trainer_widgets/CustomAppBar.dart';
+import 'package:stack_trainer/stack_trainer_widgets/CustomDrawer.dart';
+import 'package:stack_trainer/stack_trainer_widgets/IndexDisplay.dart';
+import 'package:stack_trainer/stack_trainer_widgets/MistakeDialog.dart';
 import 'package:stack_trainer/models/GameRound.dart';
 import 'dart:async';
 import 'constants.dart' as CONST;
-import 'PositionTrainerWidgets/CardDisplay.dart';
+import 'stack_trainer_widgets/CardDisplay.dart';
 
 class StackTrainer extends StatelessWidget {
   static const routeName = '/stack_trainer';

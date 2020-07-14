@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/PositionTrainerWidgets/ModeSlider.dart';
+import 'package:stack_trainer/stack_trainer_widgets/ModeSlider.dart';
 import 'package:stack_trainer/stack_creator.dart';
 
 import 'StackDropdownButton.dart';
