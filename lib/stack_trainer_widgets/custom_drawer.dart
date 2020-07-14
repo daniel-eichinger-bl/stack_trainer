@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/stack_trainer_widgets/ModeSlider.dart';
+import 'package:stack_trainer/stack_trainer_widgets/mode_slider.dart';
 import 'package:stack_trainer/stack_creator.dart';
 
-import 'StackDropdownButton.dart';
+import 'stack_dropdown_button.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer();

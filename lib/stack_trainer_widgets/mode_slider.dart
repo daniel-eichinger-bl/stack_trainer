@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stack_trainer/stack_trainer_widgets/SliderThumb.dart';
+import 'package:stack_trainer/stack_trainer_widgets/slider_thump.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 import 'package:stack_trainer/models/GameRound.dart';
 
