@@ -24,7 +24,7 @@ class GameRound with ChangeNotifier {
 
   GameRound() {
     String jsonString = StorageService.getString('stacks', defValue: '{}');
-bug    Map decoded = jsonDecode(jsonString);
+    Map decoded = jsonDecode(jsonString);
     if (decoded.length == 0) {
       map = CardStackMap({});
     } else {
