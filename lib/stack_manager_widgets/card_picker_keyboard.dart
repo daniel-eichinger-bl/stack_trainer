@@ -49,12 +49,6 @@ class CardPickerKeyboard extends StatelessWidget
 
             if (card.length > 0) {
               return _buildFlatButton(card);
-            } else if (i == 14 || i == 29 || i == 44 || i == 59) {
-              return IconButton(
-                icon: Icon(Icons.backspace),
-                color: Colors.red,
-                onPressed: () => this.notifyCard('-1'),
-              );
             } else {
               return Container(child: Text(''));
             }

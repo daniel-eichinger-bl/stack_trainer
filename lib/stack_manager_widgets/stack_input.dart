@@ -21,13 +21,33 @@ class _StackInputState extends State<StackInput> {
       actions: [
         KeyboardAction(
           focusNode: _nodeText,
+          displayArrows: false,
           toolbarButtons: [
             (node) {
               return IconButton(
-                icon: Icon(Icons.close, color: Colors.white,),
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
                 onPressed: () {
                   notifier.value = '';
                   node.unfocus();
+                },
+              );
+            },
+            (node) {
+              return IconButton(
+                icon: Icon(
+                  Icons.backspace,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  if (cards.length > 0) {
+                    setState(() {
+                      notifier.value = '';
+                      cards.removeLast();
+                    });
+                  }
                 },
               );
             },
@@ -57,17 +77,15 @@ class _StackInputState extends State<StackInput> {
                 height: 65,
                 notifier: notifier,
                 builder: (context, card, hasFocus) {
-                  if (card != '-1' && card.length > 0) {
+                  if (card.length > 0) {
                     cards.add(card);
-                  } else if (card == '-1' && cards.length > 0) {
-                    cards.removeLast();
                   }
 
                   String msg = '';
                   if (cards.length > 0) {
                     msg = cards.join(',');
                   }
-                  print(cards);
+                  print(card);
                   return Container(
                     color: Colors.red,
                     alignment: Alignment.center,
