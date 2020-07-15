@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:provider/provider.dart';
+import 'package:stack_trainer/models/GameRound.dart';
+import 'package:stack_trainer/models/Stack.dart';
+import 'package:stack_trainer/models/card_stack_map.dart';
 import 'package:stack_trainer/stack_manager_widgets/card_grid_view.dart';
 import 'package:stack_trainer/storage_service.dart';
 import 'card_picker_keyboard.dart';
@@ -19,7 +23,6 @@ class _StackInputState extends State<StackInput> {
   final notifier = ValueNotifier<String>('');
 
   var cards = [];
-
 
   KeyboardActionsConfig _buildConfig(BuildContext context) {
     return KeyboardActionsConfig(
@@ -68,24 +71,35 @@ class _StackInputState extends State<StackInput> {
     );
   }
 
-  // TODO add name and cards checks
   void _saveStack() {
-    if(cards.length < 4) {
+    if (cards.length < 4 && widget.stackName.length > 0) {
+      final snackbar = SnackBar(
+        content: Text("Error while saving"),
+      );
+      Scaffold.of(context).showSnackBar(snackbar);
       return;
     }
 
-    var jsonString = StorageService.getString('stacks', defValue: '{}');
-    Map<String,dynamic> stacks = jsonDecode(jsonString);
-
-    Map<String, String> cardMap = {};
+    Map<String, int> order = {};
     cards.asMap().forEach((key, value) {
       int idx = key + 1;
-      cardMap[value] = '$idx';
+      order[value] = idx;
     });
 
-    stacks[widget.stackName] = cardMap;
-    var json = jsonEncode(stacks);
-    StorageService.putString('stacks', json);
+    final round = Provider.of<GameRound>(context, listen: false);
+    round.addStack(widget.stackName, CardStack(order));
+
+    // var jsonString = StorageService.getString('stacks', defValue: '{}');
+    // var stack = CardStack(order);
+    // var stacks = CardStackMap({'test1': newStack, 'test2': newStack2});
+    // String jsonString = jsonEncode(stacks);
+    // Map stacksMap = jsonDecode(jsonString);
+    // var stacksDecoded = CardStackMap.fromJson(stacksMap);
+    // print(stacksDecoded);
+    // var s = jsonDecode(jsonString);
+    // stacks[widget.stackName] = cardMap;
+    // var json = jsonEncode(stacks);
+    // StorageService.putString('stacks', json);
   }
 
   Future<bool> _onBackPressed() {

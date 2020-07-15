@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
+import 'package:stack_trainer/models/Stack.dart';
+import 'package:stack_trainer/models/card_stack_map.dart';
 import 'package:stack_trainer/storage_service.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 
@@ -11,7 +14,9 @@ class GameRound with ChangeNotifier {
   CONST.TrainModes subMode = CONST.TrainModes.indexes;
 
   String stackName = 'Mnemonica';
-  Map<String, dynamic> stackOrder = CONST.stack;
+  Map<String, int> stackOrder = CONST.stack;
+  CardStackMap stacks;
+
   String card = '';
   int chosenPosition = -1;
   List<int> positions = [];
@@ -19,6 +24,10 @@ class GameRound with ChangeNotifier {
 
   GameRound() {
     stackName = StorageService.getString('stack', defValue: 'Mnemonica');
+    
+    String jsonString = StorageService.getString('stacks', defValue: '{}');
+    stacks = CardStackMap.fromJson(jsonDecode(jsonString));
+
     newRound();
   }
 
@@ -70,4 +79,12 @@ class GameRound with ChangeNotifier {
     // StorageService.putString('stack', name);
     // newRound();
   }
+
+  
+  void addStack(String stackName, CardStack stack) {
+    stacks.add(stackName, stack);
+  }
+
+
+
 }

@@ -1,10 +1,16 @@
-class Stack {
-  final String name;
-  final Map<String,int> order;
+import 'package:json_annotation/json_annotation.dart';
 
-  Stack(this.name, this.order);
+part 'Stack.g.dart';
 
-  Stack.fromJson(Map<String, dynamic> json) 
-      : name = json['name'],
-      order = json['order'];
+// https://flutter.dev/docs/development/data-and-backend/json
+@JsonSerializable()
+class CardStack {
+  final Map<String, int> order;
+
+  CardStack(this.order);
+
+  factory CardStack.fromJson(Map<String, dynamic> json) => _$CardStackFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CardStackToJson(this);
+
 }
