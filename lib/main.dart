@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:stack_trainer/StorageUtil.dart';
+import 'package:stack_trainer/storage_service.dart';
 import 'package:stack_trainer/models/GameRound.dart';
 import 'package:stack_trainer/stack_creator.dart';
 import 'package:stack_trainer/stack_trainer.dart';

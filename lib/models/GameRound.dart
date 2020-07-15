@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
-import 'package:stack_trainer/StorageUtil.dart';
+import 'package:stack_trainer/storage_service.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 
 class GameRound with ChangeNotifier {
