@@ -13,9 +13,9 @@ class GameRound with ChangeNotifier {
   CONST.TrainModes mode = CONST.TrainModes.mix;
   CONST.TrainModes subMode = CONST.TrainModes.indexes;
 
-  String stackName = 'Mnemonica';
-  Map<String, int> stackOrder = CONST.stack;
-  CardStackMap stacks;
+  String stackName;
+  CardStackMap map;
+  CardStack stack;
 
   String card = '';
   int chosenPosition = -1;
@@ -23,16 +23,16 @@ class GameRound with ChangeNotifier {
   bool showDialog = false;
 
   GameRound() {
-    stackName = StorageService.getString('stack', defValue: 'Mnemonica');
-    
     String jsonString = StorageService.getString('stacks', defValue: '{}');
-    stacks = CardStackMap.fromJson(jsonDecode(jsonString));
+    map = CardStackMap.fromJson(jsonDecode(jsonString));
 
+    stackName = StorageService.getString('stack', defValue: 'Mnemonica');
+    stack = map.stacks[stackName];
     newRound();
   }
 
   List<int> getRandomPositions() {
-    final l = List.generate(stackOrder.length, (i) => i + 1);
+    final l = List.generate(stack.order.length, (i) => i + 1);
     l.shuffle();
     return [l[0], l[1], l[2], l[3]];
   }
@@ -42,7 +42,7 @@ class GameRound with ChangeNotifier {
     chosenPosition = -1;
     final randomPositions = getRandomPositions();
 
-    card = stackOrder.keys.elementAt(randomPositions[0] - 1);
+    card = stack.order.keys.elementAt(randomPositions[0] - 1);
     randomPositions.shuffle();
     positions = randomPositions;
 
@@ -62,7 +62,7 @@ class GameRound with ChangeNotifier {
 
   void setChosenPosition(pos) {
     chosenPosition = pos;
-    final correctChoice = stackOrder[card] == chosenPosition;
+    final correctChoice = stack.order[card] == chosenPosition;
 
     if (correctChoice) {
       Timer(new Duration(milliseconds: 250), () => this.newRound());
@@ -73,18 +73,20 @@ class GameRound with ChangeNotifier {
     notifyListeners();
   }
 
-  setStack(name, order) {
-    // stackName = name;
-    // stackOrder = order;
-    // StorageService.putString('stack', name);
-    // newRound();
+  setStack(String n, CardStack s) {
+    stackName = n;
+    stack = s;
+    StorageService.putString('stack', stackName);
+    newRound();
   }
 
   
   void addStack(String stackName, CardStack stack) {
-    stacks.add(stackName, stack);
+    map.add(stackName, stack);
+
+    String json = jsonEncode(map);
+    StorageService.putString('stacks', json);
+
+    notifyListeners();
   }
-
-
-
 }

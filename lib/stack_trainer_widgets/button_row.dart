@@ -33,7 +33,7 @@ class ButtonRow extends StatelessWidget {
     final buttonsDisabled = chosenPosition != -1 ? true : false;
     var correctChoice = false;
     if (chosenPosition != -1) {
-      correctChoice = round.stackOrder[card] == chosenPosition;
+      correctChoice = round.stack.order[card] == chosenPosition;
     }
 
     return Row(
@@ -41,7 +41,7 @@ class ButtonRow extends StatelessWidget {
       children: List.generate(positions.length, (idx) {
         final ele = positions[idx];
 
-        final String card = round.stackOrder.keys.elementAt(ele - 1);
+        final String card = round.stack.order.keys.elementAt(ele - 1);
         final value = card[0] != '1' ? card[0] : card.substring(0, 2);
         final suit = CONST.suitDic[card[card.length-1]];
 

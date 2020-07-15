@@ -50,9 +50,9 @@ class MistakeDialog extends StatelessWidget {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _getCardImage(position - 1, round.stackOrder),
-          _getCardImage(position, round.stackOrder, Colors.red),
-          _getCardImage(position + 1, round.stackOrder),
+          _getCardImage(position - 1, round.stack.order),
+          _getCardImage(position, round.stack.order, Colors.red),
+          _getCardImage(position + 1, round.stack.order),
         ],
       ),
       actions: <Widget>[

@@ -72,7 +72,7 @@ class _StackInputState extends State<StackInput> {
   }
 
   void _saveStack() {
-    if (cards.length < 4 && widget.stackName.length > 0) {
+    if (cards.length < 4 || widget.stackName == null) {
       final snackbar = SnackBar(
         content: Text("Error while saving"),
       );
@@ -88,18 +88,6 @@ class _StackInputState extends State<StackInput> {
 
     final round = Provider.of<GameRound>(context, listen: false);
     round.addStack(widget.stackName, CardStack(order));
-
-    // var jsonString = StorageService.getString('stacks', defValue: '{}');
-    // var stack = CardStack(order);
-    // var stacks = CardStackMap({'test1': newStack, 'test2': newStack2});
-    // String jsonString = jsonEncode(stacks);
-    // Map stacksMap = jsonDecode(jsonString);
-    // var stacksDecoded = CardStackMap.fromJson(stacksMap);
-    // print(stacksDecoded);
-    // var s = jsonDecode(jsonString);
-    // stacks[widget.stackName] = cardMap;
-    // var json = jsonEncode(stacks);
-    // StorageService.putString('stacks', json);
   }
 
   Future<bool> _onBackPressed() {
@@ -124,7 +112,7 @@ class _StackInputState extends State<StackInput> {
             height: 65,
             notifier: notifier,
             builder: (context, card, hasFocus) {
-              if (card.length > 0) {
+              if (card.length > 0 && !cards.contains(card)) {
                 cards.add(card);
               }
               return CardGridView(cards);

@@ -14,12 +14,12 @@ class StackTrainer extends StatelessWidget {
   static const routeName = '/stack_trainer';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> showMistakeDialog(var context, String card, var callback) async {
+  Future<void> showMistakeDialog(var context, int p, var c) async {
     await showDialog(
         context: context,
         barrierDismissible: true,
         builder: (context) =>
-            MistakeDialog(position: CONST.stack[card], callback: callback));
+            MistakeDialog(position: p, callback: c));
   }
 
   @override
@@ -28,7 +28,7 @@ class StackTrainer extends StatelessWidget {
 
     if (round.showDialog) {
       Future.delayed(Duration.zero,
-          () => showMistakeDialog(context, round.card, round.newRound));
+          () => showMistakeDialog(context, round.stack.order[round.card], round.newRound));
     }
 
     return Scaffold(
@@ -40,7 +40,7 @@ class StackTrainer extends StatelessWidget {
           children: <Widget>[
             round.subMode == CONST.TrainModes.cards
                 ? CardDisplay(round.card)
-                : IndexDisplay(round.stackOrder[round.card]),
+                : IndexDisplay(round.stack.order[round.card]),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
