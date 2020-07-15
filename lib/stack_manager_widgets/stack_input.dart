@@ -60,6 +60,14 @@ class _StackInputState extends State<StackInput> {
     );
   }
 
+  Future<bool> _onBackPressed() {
+    if (_nodeText.hasFocus) {
+      _nodeText.unfocus();
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardActions(
@@ -72,28 +80,31 @@ class _StackInputState extends State<StackInput> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              KeyboardCustomInput<String>(
-                focusNode: _nodeText,
-                height: 65,
-                notifier: notifier,
-                builder: (context, card, hasFocus) {
-                  if (card.length > 0) {
-                    cards.add(card);
-                  }
+              WillPopScope(
+                onWillPop: _onBackPressed,
+                child: KeyboardCustomInput<String>(
+                  focusNode: _nodeText,
+                  height: 65,
+                  notifier: notifier,
+                  builder: (context, card, hasFocus) {
+                    if (card.length > 0) {
+                      cards.add(card);
+                    }
 
-                  String msg = '';
-                  if (cards.length > 0) {
-                    msg = cards.join(',');
-                  }
-                  print(card);
-                  return Container(
-                    color: Colors.red,
-                    alignment: Alignment.center,
-                    child: Text(
-                      msg,
-                    ),
-                  );
-                },
+                    String msg = '';
+                    if (cards.length > 0) {
+                      msg = cards.join(',');
+                    }
+                    print(card);
+                    return Container(
+                      color: Colors.red,
+                      alignment: Alignment.center,
+                      child: Text(
+                        msg,
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
