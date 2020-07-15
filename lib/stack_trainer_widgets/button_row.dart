@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
+import 'package:stack_trainer/models/GameRound.dart';
 
 class ButtonRow extends StatelessWidget {
   final List<int> positions;
@@ -26,10 +28,12 @@ class ButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final round = Provider.of<GameRound>(context);
+
     final buttonsDisabled = chosenPosition != -1 ? true : false;
     var correctChoice = false;
     if (chosenPosition != -1) {
-      correctChoice = CONST.stack[card] == chosenPosition;
+      correctChoice = round.stackOrder[card] == chosenPosition;
     }
 
     return Row(
@@ -37,7 +41,7 @@ class ButtonRow extends StatelessWidget {
       children: List.generate(positions.length, (idx) {
         final ele = positions[idx];
 
-        final String card = CONST.stack.keys.elementAt(ele - 1);
+        final String card = round.stackOrder.keys.elementAt(ele - 1);
         final value = card[0] != '1' ? card[0] : card.substring(0, 2);
         final suit = CONST.suitDic[card[card.length-1]];
 

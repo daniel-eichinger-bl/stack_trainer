@@ -10,21 +10,22 @@ class GameRound with ChangeNotifier {
   CONST.TrainModes mode = CONST.TrainModes.mix;
   CONST.TrainModes subMode = CONST.TrainModes.indexes;
 
-  String stack = 'Mnemonica';
+  String stackName = 'Mnemonica';
+  Map<String, dynamic> stackOrder = CONST.stack;
   String card = '';
   int chosenPosition = -1;
   List<int> positions = [];
   bool showDialog = false;
 
   GameRound() {
-    stack = StorageService.getString('stack', defValue: 'Mnemonica');
+    stackName = StorageService.getString('stack', defValue: 'Mnemonica');
     newRound();
   }
 
   List<int> getRandomPositions() {
-    final l = List.generate(52, (i) => i + 1);
+    final l = List.generate(stackOrder.length, (i) => i + 1);
     l.shuffle();
-    return [l[1], l[2], l[3], l[4]];
+    return [l[0], l[1], l[2], l[3]];
   }
 
   void newRound() {
@@ -32,7 +33,7 @@ class GameRound with ChangeNotifier {
     chosenPosition = -1;
     final randomPositions = getRandomPositions();
 
-    card = CONST.stack.keys.elementAt(randomPositions[0] - 1);
+    card = stackOrder.keys.elementAt(randomPositions[0] - 1);
     randomPositions.shuffle();
     positions = randomPositions;
 
@@ -52,7 +53,7 @@ class GameRound with ChangeNotifier {
 
   void setChosenPosition(pos) {
     chosenPosition = pos;
-    final correctChoice = CONST.stack[card] == chosenPosition;
+    final correctChoice = stackOrder[card] == chosenPosition;
 
     if (correctChoice) {
       Timer(new Duration(milliseconds: 250), () => this.newRound());
@@ -63,9 +64,10 @@ class GameRound with ChangeNotifier {
     notifyListeners();
   }
 
-  setStack(newStack) {
-    stack = newStack;
-    StorageService.putString('stack', newStack);
-    newRound();
+  setStack(name, order) {
+    // stackName = name;
+    // stackOrder = order;
+    // StorageService.putString('stack', name);
+    // newRound();
   }
 }

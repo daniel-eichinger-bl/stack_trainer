@@ -68,13 +68,19 @@ class _StackInputState extends State<StackInput> {
     );
   }
 
+  // TODO add name and cards checks
   void _saveStack() {
+    if(cards.length < 4) {
+      return;
+    }
+
     var jsonString = StorageService.getString('stacks', defValue: '{}');
     Map<String,dynamic> stacks = jsonDecode(jsonString);
 
     Map<String, String> cardMap = {};
     cards.asMap().forEach((key, value) {
-      cardMap[value] = '$key';
+      int idx = key + 1;
+      cardMap[value] = '$idx';
     });
 
     stacks[widget.stackName] = cardMap;

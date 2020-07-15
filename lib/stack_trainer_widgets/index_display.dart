@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IndexDisplay extends StatelessWidget {
-  final int position;
+  final position;
   IndexDisplay(this.position);
 
   @override

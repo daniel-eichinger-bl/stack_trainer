@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/constants.dart' as CONST;
+import 'package:provider/provider.dart';
+import 'package:stack_trainer/models/GameRound.dart';
 
 class MistakeDialog extends StatelessWidget {
   final position;
@@ -7,19 +8,19 @@ class MistakeDialog extends StatelessWidget {
   const MistakeDialog({Key key, this.position, this.callback})
       : super(key: key);
 
-  int _correctIndex(idx) {
+  int _correctIndex(idx, length) {
     if (idx <= 0) {
-      return CONST.stack.length;
-    } else if (idx > CONST.stack.length) {
+      return length;
+    } else if (idx > length) {
       return 1;
     } else {
       return idx;
     }
   }
 
-  Widget _getCardImage(p, [color = Colors.white]) {
-    p = _correctIndex(p);
-    final card = CONST.stack.keys.elementAt(p - 1);
+  Widget _getCardImage(p, stackOrder, [color = Colors.white]) {
+    p = _correctIndex(p, stackOrder.length);
+    final card = stackOrder.keys.elementAt(p - 1);
     return Expanded(
       child: Container(
         child: Column(
@@ -42,14 +43,16 @@ class MistakeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final round = Provider.of<GameRound>(context);
+
     return AlertDialog(
       backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _getCardImage(position - 1),
-          _getCardImage(position, Colors.red),
-          _getCardImage(position + 1),
+          _getCardImage(position - 1, round.stackOrder),
+          _getCardImage(position, round.stackOrder, Colors.red),
+          _getCardImage(position + 1, round.stackOrder),
         ],
       ),
       actions: <Widget>[

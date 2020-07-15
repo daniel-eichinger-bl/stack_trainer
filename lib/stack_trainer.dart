@@ -40,7 +40,7 @@ class StackTrainer extends StatelessWidget {
           children: <Widget>[
             round.subMode == CONST.TrainModes.cards
                 ? CardDisplay(round.card)
-                : IndexDisplay(CONST.stack[round.card]),
+                : IndexDisplay(round.stackOrder[round.card]),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
