@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'card_picker_keyboard.dart';
+import 'package:stack_trainer/constants.dart' as CONST;
 
 class StackInput extends StatefulWidget {
   @override
@@ -62,10 +63,41 @@ class _StackInputState extends State<StackInput> {
 
   Future<bool> _onBackPressed() {
     if (_nodeText.hasFocus) {
+      notifier.value = '';
       _nodeText.unfocus();
       return Future.value(false);
     }
     return Future.value(true);
+  }
+
+  Widget _buildCardDisplay(card) {
+    String value = card[0] != '1' ? card[0] : card.substring(0, 2);
+    String suit = CONST.suitDic[card[card.length - 1]];
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(3.0)),
+          border: Border.all(
+            width: 2,
+            color: Colors.white,
+          )),
+      margin: EdgeInsets.only(left: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            '$value',
+            style: TextStyle(color: Colors.black, fontSize: 16),
+          ),
+          Image.asset(
+            'images/poker_cards/$suit.png',
+            width: 13,
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -73,41 +105,42 @@ class _StackInputState extends State<StackInput> {
     return KeyboardActions(
       isDialog: false,
       config: _buildConfig(context),
-      child: Container(
-        padding: const EdgeInsets.all(15.0),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              WillPopScope(
-                onWillPop: _onBackPressed,
-                child: KeyboardCustomInput<String>(
-                  focusNode: _nodeText,
-                  height: 65,
-                  notifier: notifier,
-                  builder: (context, card, hasFocus) {
-                    if (card.length > 0) {
-                      cards.add(card);
-                    }
+      child: WillPopScope(
+        onWillPop: _onBackPressed,
+        child: KeyboardCustomInput<String>(
+          focusNode: _nodeText,
+          height: 65,
+          notifier: notifier,
+          builder: (context, card, hasFocus) {
+            if (card.length > 0) {
+              cards.add(card);
+            }
 
-                    String msg = '';
-                    if (cards.length > 0) {
-                      msg = cards.join(',');
-                    }
-                    print(card);
-                    return Container(
-                      color: Colors.red,
-                      alignment: Alignment.center,
-                      child: Text(
-                        msg,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+            return GridView.count(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              childAspectRatio: 1.5,
+              crossAxisCount: 4,
+              children: List.generate(52, (index) {
+                String card = '';
+                if (cards.length > index) {
+                  card = cards[index];
+                }
+                index += 1;
+                return Container(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('$index',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w100)),
+                    if (card.length > 0) ...[_buildCardDisplay(card)]
+                  ],
+                ));
+              }).toList(),
+            );
+          },
         ),
       ),
     );

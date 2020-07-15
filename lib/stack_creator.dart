@@ -12,8 +12,7 @@ class StackCreator extends StatelessWidget {
       appBar: StackCreatorAppBar(
         height: 80,
       ),
-      body: 
-       Column(
+      body: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(32.0),
