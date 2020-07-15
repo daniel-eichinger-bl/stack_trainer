@@ -24,7 +24,12 @@ class GameRound with ChangeNotifier {
 
   GameRound() {
     String jsonString = StorageService.getString('stacks', defValue: '{}');
-    map = CardStackMap.fromJson(jsonDecode(jsonString));
+bug    Map decoded = jsonDecode(jsonString);
+    if (decoded.length == 0) {
+      map = CardStackMap({});
+    } else {
+      map = CardStackMap.fromJson(decoded);
+    }
 
     stackName = StorageService.getString('stack', defValue: 'Mnemonica');
     stack = map.stacks[stackName];
@@ -80,7 +85,6 @@ class GameRound with ChangeNotifier {
     newRound();
   }
 
-  
   void addStack(String stackName, CardStack stack) {
     map.add(stackName, stack);
 
