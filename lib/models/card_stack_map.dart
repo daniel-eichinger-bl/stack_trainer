@@ -11,9 +11,9 @@ class CardStackMap {
   CardStackMap(s)
       : stacks = {
           ...s,
-          'Mnemonica': CardStack(CONST.mnemonica),
           'Aronson': CardStack(CONST.aronson),
-          'Memorandum': CardStack(CONST.memorandum)
+          'Memorandum': CardStack(CONST.memorandum),
+          'Mnemonica': CardStack(CONST.mnemonica),
         };
 
   factory CardStackMap.fromJson(Map<String, dynamic> json) =>

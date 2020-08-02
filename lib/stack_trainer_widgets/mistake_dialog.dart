@@ -26,9 +26,12 @@ class MistakeDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Image.asset('images/poker_cards/$card.png'),
+            Container(
+              height: 100,
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Image.asset('images/poker_cards/$card.png'),
+              ),
             ),
             Text(
               '$p',

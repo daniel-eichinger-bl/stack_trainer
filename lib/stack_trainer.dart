@@ -18,8 +18,7 @@ class StackTrainer extends StatelessWidget {
     await showDialog(
         context: context,
         barrierDismissible: true,
-        builder: (context) =>
-            MistakeDialog(position: p, callback: c));
+        builder: (context) => MistakeDialog(position: p, callback: c));
   }
 
   @override
@@ -27,8 +26,10 @@ class StackTrainer extends StatelessWidget {
     final round = Provider.of<GameRound>(context);
 
     if (round.showDialog) {
-      Future.delayed(Duration.zero,
-          () => showMistakeDialog(context, round.stack.order[round.card], round.newRound));
+      Future.delayed(
+          Duration.zero,
+          () => showMistakeDialog(
+              context, round.stack.order[round.card], round.newRound));
     }
 
     return Scaffold(
@@ -36,21 +37,23 @@ class StackTrainer extends StatelessWidget {
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: CustomAppBar(height: 80, scaffoldKey: scaffoldKey),
         drawer: CustomDrawer(),
-        body: Column(
-          children: <Widget>[
-            round.subMode == CONST.TrainModes.cards
-                ? CardDisplay(round.card)
-                : IndexDisplay(round.stack.order[round.card]),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                ButtonRow(round.subMode, round.chosenPosition, round.card,
-                    round.setChosenPosition, round.positions.sublist(0, 2)),
-                ButtonRow(round.subMode, round.chosenPosition, round.card,
-                    round.setChosenPosition, round.positions.sublist(2, 4)),
-              ],
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              round.subMode == CONST.TrainModes.cards
+                  ? CardDisplay(round.card)
+                  : IndexDisplay(round.stack.order[round.card]),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  ButtonRow(round.subMode, round.chosenPosition, round.card,
+                      round.setChosenPosition, round.positions.sublist(0, 2)),
+                  ButtonRow(round.subMode, round.chosenPosition, round.card,
+                      round.setChosenPosition, round.positions.sublist(2, 4)),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 }
