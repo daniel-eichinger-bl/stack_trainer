@@ -93,4 +93,14 @@ class GameRound with ChangeNotifier {
 
     notifyListeners();
   }
+
+  removeCurrentStack() {
+    StorageService.putString('stack', 'Mnemonica');
+    map.remove(stackName);
+    StorageService.putString('stacks', jsonEncode(map));
+
+    stackName = 'Mnemonica';
+    stack = map.stacks[stackName];
+    newRound();
+  }
 }

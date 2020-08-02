@@ -23,4 +23,8 @@ class CardStackMap {
   void add(key, value) {
     stacks[key] = value;
   }
+
+  void remove(key) {
+    stacks.remove(key);
+  }
 }

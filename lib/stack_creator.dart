@@ -24,7 +24,7 @@ class _StackCreatorState extends State<StackCreator> {
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: TextField(
-              onSubmitted: (value) => setState(() {
+              onChanged: (value) => setState(() {
                 name = value;
               }),
               decoration: InputDecoration(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stack_trainer/models/GameRound.dart';
 import 'package:stack_trainer/stack_trainer_widgets/mode_slider.dart';
 import 'package:stack_trainer/stack_creator.dart';
 
@@ -9,6 +11,9 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final round = Provider.of<GameRound>(context);
+    final activeStack = round.stackName;
+
     return Drawer(
       child: Container(
         color: Color.fromRGBO(48, 48, 48, 1.0),
@@ -68,7 +73,37 @@ class CustomDrawer extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-            )
+            ),
+            if (!['Aronson', 'Mnemonica', 'Memorandum']
+                .contains(activeStack)) ...[
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.only(left: 18),
+                child: FlatButton.icon(
+                  onPressed: () => round.removeCurrentStack(),
+                  icon: Icon(
+                    Icons.remove,
+                    color: Colors.red,
+                  ),
+                  label: RichText(
+                    text: TextSpan(
+                        style: TextStyle(color: Colors.white),
+                        children: [
+                          TextSpan(
+                            text: "Remove",
+                          ),
+                          TextSpan(
+                            text: " $activeStack ",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)
+                          ),
+                          TextSpan(
+                            text: "Stack",
+                          )
+                        ]),
+                  ),
+                ),
+              )
+            ]
           ],
         ),
       ),

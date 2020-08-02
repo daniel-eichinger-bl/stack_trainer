@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:provider/provider.dart';
 import 'package:stack_trainer/models/GameRound.dart';
 import 'package:stack_trainer/models/Stack.dart';
-import 'package:stack_trainer/models/card_stack_map.dart';
 import 'package:stack_trainer/stack_manager_widgets/card_grid_view.dart';
-import 'package:stack_trainer/storage_service.dart';
 import 'card_picker_keyboard.dart';
 
 class StackInput extends StatefulWidget {
@@ -74,7 +70,7 @@ class _StackInputState extends State<StackInput> {
   void _saveStack() {
     if (cards.length < 4 || widget.stackName == null) {
       final snackbar = SnackBar(
-        content: Text("Error while saving"),
+        content: Text("Please provide a name and at least 4 cards"),
       );
       Scaffold.of(context).showSnackBar(snackbar);
       return;
@@ -88,6 +84,7 @@ class _StackInputState extends State<StackInput> {
 
     final round = Provider.of<GameRound>(context, listen: false);
     round.addStack(widget.stackName, CardStack(order));
+    Navigator.of(context).pop();
   }
 
   Future<bool> _onBackPressed() {
@@ -101,6 +98,8 @@ class _StackInputState extends State<StackInput> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.stackName);
+
     return Stack(children: <Widget>[
       KeyboardActions(
         isDialog: false,

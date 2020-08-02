@@ -68,9 +68,7 @@ const memorandum = {
   '9S': 52,
 };
 
-
-
-const aronson = {
+const Map<String, int> aronson = {
   'JS': 1,
   'KC': 2,
   '5C': 3,
