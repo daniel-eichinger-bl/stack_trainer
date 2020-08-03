@@ -18,6 +18,7 @@ class StackApp extends StatelessWidget {
     return ChangeNotifierProvider<GameRound>(
       create: (context) => GameRound(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Stack Trainer',
         theme: ThemeData(
           primaryColor: Color.fromRGBO(0, 4, 7, 1.0),

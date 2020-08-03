@@ -98,8 +98,6 @@ class _StackInputState extends State<StackInput> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.stackName);
-
     return Stack(children: <Widget>[
       KeyboardActions(
         isDialog: false,
