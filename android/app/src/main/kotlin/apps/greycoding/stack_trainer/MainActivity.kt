@@ -1,4 +1,4 @@
-package com.example.stack_trainer
+package apps.greycoding.stack_trainer
 
 import io.flutter.embedding.android.FlutterActivity
 
