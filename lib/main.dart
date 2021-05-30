@@ -21,12 +21,15 @@ class StackApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Stack Trainer',
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(0, 4, 7, 1.0),
-          accentColor: Colors.white,
-          backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
-          textTheme:
-              GoogleFonts.robotoCondensedTextTheme(Theme.of(context).textTheme),
-        ),
+            primaryColor: Color.fromRGBO(0, 4, 7, 1.0),
+            accentColor: Colors.white,
+            backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+            textTheme: GoogleFonts.robotoCondensedTextTheme(
+                Theme.of(context).textTheme),
+            appBarTheme: AppBarTheme(
+                brightness: Brightness.dark,
+                textTheme: GoogleFonts.robotoCondensedTextTheme(
+                    Theme.of(context).appBarTheme.textTheme))),
         initialRoute: StackTrainer.routeName,
         routes: {
           StackTrainer.routeName: (context) => StackTrainer(),

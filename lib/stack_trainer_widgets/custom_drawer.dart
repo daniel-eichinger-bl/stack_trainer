@@ -61,7 +61,7 @@ class CustomDrawer extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(left: 18),
-              child: FlatButton.icon(
+              child: TextButton.icon(
                 onPressed: () =>
                     Navigator.pushNamed(context, StackCreator.routeName),
                 icon: Icon(
@@ -79,7 +79,7 @@ class CustomDrawer extends StatelessWidget {
               Container(
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.only(left: 18),
-                child: FlatButton.icon(
+                child: TextButton.icon(
                   onPressed: () => round.removeCurrentStack(),
                   icon: Icon(
                     Icons.remove,
@@ -93,9 +93,10 @@ class CustomDrawer extends StatelessWidget {
                             text: "Remove",
                           ),
                           TextSpan(
-                            text: " $activeStack ",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)
-                          ),
+                              text: " $activeStack ",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red)),
                           TextSpan(
                             text: "Stack",
                           )

@@ -72,7 +72,7 @@ class _StackInputState extends State<StackInput> {
       final snackbar = SnackBar(
         content: Text("Please provide a name and at least 4 cards"),
       );
-      Scaffold.of(context).showSnackBar(snackbar);
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
       return;
     }
 

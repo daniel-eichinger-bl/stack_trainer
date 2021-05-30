@@ -19,7 +19,7 @@ class CardPickerKeyboard extends StatelessWidget
     String value = card[0] != '1' ? card[0] : card.substring(0, 2);
     String suit = CONST.suitDic[card[card.length - 1]];
 
-    return FlatButton(
+    return TextButton(
         onPressed: () => this.notifyCard(card),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

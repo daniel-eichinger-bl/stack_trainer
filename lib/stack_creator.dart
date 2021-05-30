@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stack_trainer/stack_manager_widgets/stack_creator_appbar.dart';
 import 'stack_manager_widgets/stack_input.dart';
 
 class StackCreator extends StatefulWidget {
@@ -16,8 +15,21 @@ class _StackCreatorState extends State<StackCreator> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: StackCreatorAppBar(
-        height: 80,
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Text('Stack Creator',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.white,
+                )),
+            Container(
+              margin: EdgeInsets.only(left: 8),
+              child: Icon(Icons.add_to_photos, size: 35, color: Colors.red),
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: <Widget>[

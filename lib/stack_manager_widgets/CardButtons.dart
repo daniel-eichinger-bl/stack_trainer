@@ -23,7 +23,7 @@ class CardButtons extends StatelessWidget {
                 suit = CONST.suitDic[card[card.length - 1]];
               }
 
-              return FlatButton(
+              return TextButton(
                   onPressed: card.length > 0 ? () => null : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
