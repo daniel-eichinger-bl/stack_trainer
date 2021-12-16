@@ -35,6 +35,7 @@ class StackTrainer extends StatelessWidget {
         key: scaffoldKey,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor,
           title: Row(
             children: [
               Text('Stack Trainer',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stack_trainer/storage_service.dart';
@@ -27,9 +28,9 @@ class StackApp extends StatelessWidget {
             textTheme: GoogleFonts.robotoCondensedTextTheme(
                 Theme.of(context).textTheme),
             appBarTheme: AppBarTheme(
-                brightness: Brightness.dark,
-                textTheme: GoogleFonts.robotoCondensedTextTheme(
-                    Theme.of(context).appBarTheme.textTheme))),
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
+                toolbarTextStyle: GoogleFonts.robotoCondensed(),
+                titleTextStyle: GoogleFonts.robotoCondensed())),
         initialRoute: StackTrainer.routeName,
         routes: {
           StackTrainer.routeName: (context) => StackTrainer(),

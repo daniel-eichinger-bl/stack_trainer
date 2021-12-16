@@ -16,6 +16,7 @@ class _StackCreatorState extends State<StackCreator> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Row(
           children: [
             Text('Stack Creator',
