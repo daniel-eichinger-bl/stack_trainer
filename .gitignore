@@ -1,4 +1,6 @@
 /screenshots/
+/web
+/.firebase
 
 # Android
 android/key.properties
