@@ -20,7 +20,7 @@ class CardButtons extends StatelessWidget {
               String value = '';
               if (card.length > 0) {
                 value = card[0] != '1' ? card[0] : card.substring(0, 2);
-                suit = CONST.suitDic[card[card.length - 1]];
+                suit = CONST.suitDic[card[card.length - 1]]!;
               }
 
               return TextButton(

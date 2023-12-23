@@ -9,8 +9,8 @@ class CardStack {
 
   CardStack(this.order);
 
-  factory CardStack.fromJson(Map<String, dynamic> json) => _$CardStackFromJson(json);
+  factory CardStack.fromJson(Map<String, dynamic> json) =>
+      _$CardStackFromJson(json);
 
   Map<String, dynamic> toJson() => _$CardStackToJson(this);
-
 }

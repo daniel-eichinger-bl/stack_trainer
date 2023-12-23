@@ -13,9 +13,9 @@ class GameRound with ChangeNotifier {
   CONST.TrainModes mode = CONST.TrainModes.mix;
   CONST.TrainModes subMode = CONST.TrainModes.indexes;
 
-  String stackName;
-  CardStackMap map;
-  CardStack stack;
+  String stackName = "";
+  CardStackMap map = CardStackMap({});
+  CardStack stack = CardStack({});
 
   String card = '';
   int chosenPosition = -1;
@@ -24,15 +24,13 @@ class GameRound with ChangeNotifier {
 
   GameRound() {
     String jsonString = StorageService.getString('stacks', defValue: '{}');
-    Map decoded = jsonDecode(jsonString);
-    if (decoded.length == 0) {
-      map = CardStackMap({});
-    } else {
+    Map<String, dynamic> decoded = jsonDecode(jsonString);
+    if (decoded.length != 0) {
       map = CardStackMap.fromJson(decoded);
     }
 
     stackName = StorageService.getString('stack', defValue: 'Mnemonica');
-    stack = map.stacks[stackName];
+    stack = map.stacks[stackName]!;
     newRound();
   }
 
@@ -100,7 +98,7 @@ class GameRound with ChangeNotifier {
     StorageService.putString('stacks', jsonEncode(map));
 
     stackName = 'Mnemonica';
-    stack = map.stacks[stackName];
+    stack = map.stacks[stackName]!;
     newRound();
   }
 }

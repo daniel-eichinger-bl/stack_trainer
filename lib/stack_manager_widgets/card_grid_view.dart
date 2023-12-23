@@ -7,7 +7,7 @@ class CardGridView extends StatelessWidget {
 
   Widget _buildCardDisplay(card) {
     String value = card[0] != '1' ? card[0] : card.substring(0, 2);
-    String suit = CONST.suitDic[card[card.length - 1]];
+    String suit = CONST.suitDic[card[card.length - 1]]!;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 2, vertical: 8),
