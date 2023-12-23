@@ -22,7 +22,7 @@ class ButtonRow extends StatelessWidget {
     if (chosenPosition == ele) {
       return correct ? Colors.green : Colors.red;
     } else {
-      return Theme.of(context).accentColor;
+      return Theme.of(context).colorScheme.secondary;
     }
   }
 
@@ -50,11 +50,13 @@ class ButtonRow extends StatelessWidget {
             padding: EdgeInsets.all(10),
             width: 150,
             height: 70,
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: buttonsDisabled ? null : () => callback(ele),
-              disabledElevation: 1,
-              disabledTextColor: Colors.black,
-              disabledColor: _getButtonColor(ele, correctChoice, context),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  elevation: 1,
+                  disabledBackgroundColor:
+                      _getButtonColor(ele, correctChoice, context)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -70,7 +72,6 @@ class ButtonRow extends StatelessWidget {
                       : Container(),
                 ],
               ),
-              color: Theme.of(context).accentColor,
             ));
       }),
     );

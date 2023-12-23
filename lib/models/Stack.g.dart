@@ -8,7 +8,7 @@ part of 'Stack.dart';
 
 CardStack _$CardStackFromJson(Map<String, dynamic> json) {
   return CardStack(
-    (json['order'] as Map<String, dynamic>)?.map(
+    (json['order'] as Map<String, dynamic>).map(
       (k, e) => MapEntry(k, e as int),
     ),
   );

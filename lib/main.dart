@@ -14,6 +14,8 @@ void main() async {
 }
 
 class StackApp extends StatelessWidget {
+  final ThemeData theme = ThemeData();
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<GameRound>(
@@ -21,10 +23,12 @@ class StackApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Stack Trainer',
-        theme: ThemeData(
+        theme: theme.copyWith(
             primaryColor: Color.fromRGBO(0, 4, 7, 1.0),
-            accentColor: Colors.white,
-            backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+            colorScheme: theme.colorScheme.copyWith(
+              secondary: Colors.white,
+              background: Color.fromRGBO(0, 4, 7, 1.0),
+            ),
             textTheme: GoogleFonts.robotoCondensedTextTheme(
                 Theme.of(context).textTheme),
             appBarTheme: AppBarTheme(

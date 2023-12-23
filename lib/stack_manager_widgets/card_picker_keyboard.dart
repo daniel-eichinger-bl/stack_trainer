@@ -8,7 +8,7 @@ class CardPickerKeyboard extends StatelessWidget
   final ValueNotifier<String> notifier;
   static const double _kKeyboardHeight = 250;
 
-  CardPickerKeyboard({Key key, this.notifier}) : super(key: key);
+  CardPickerKeyboard({Key? key, required this.notifier}) : super(key: key);
 
   void notifyCard(card) {
     notifier.value = '';
@@ -17,7 +17,7 @@ class CardPickerKeyboard extends StatelessWidget
 
   Widget _buildFlatButton(card) {
     String value = card[0] != '1' ? card[0] : card.substring(0, 2);
-    String suit = CONST.suitDic[card[card.length - 1]];
+    String suit = CONST.suitDic[card[card.length - 1]]!;
 
     return TextButton(
         onPressed: () => this.notifyCard(card),

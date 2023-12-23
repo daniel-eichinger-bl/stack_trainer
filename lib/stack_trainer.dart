@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:stack_trainer/stack_trainer_widgets/button_row.dart';
 import 'package:stack_trainer/stack_trainer_widgets/custom_drawer.dart';
@@ -28,37 +29,37 @@ class StackTrainer extends StatelessWidget {
       Future.delayed(
           Duration.zero,
           () => showMistakeDialog(
-              context, round.stack.order[round.card], round.newRound));
+              context, round.stack.order[round.card]!, round.newRound));
     }
 
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).backgroundColor,
-          title: Row(
-            children: [
-              Text('Stack Trainer',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: Colors.white,
-                  )),
-              Container(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Image.asset(
-                    'images/icons/card_icon_red.png',
-                    width: 60,
-                  )),
-            ],
-          ),
-          leading: IconButton(
-            icon: Icon(Icons.menu, size: 35, color: Colors.red),
-            onPressed: () => scaffoldKey.currentState.openDrawer(),
-            color: Colors.grey,
-          ),
-          brightness: Brightness.dark,
-        ),
+            backgroundColor: Theme.of(context).colorScheme.background,
+            title: Row(
+              children: [
+                Text('Stack Trainer',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.white,
+                    )),
+                Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Image.asset(
+                      'images/icons/card_icon_red.png',
+                      width: 60,
+                    )),
+              ],
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.menu, size: 35, color: Colors.red),
+              onPressed: () => scaffoldKey.currentState?.openDrawer(),
+              color: Colors.grey,
+            ),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarBrightness: Brightness.dark)),
         drawer: CustomDrawer(),
         body: SingleChildScrollView(
           child: Column(

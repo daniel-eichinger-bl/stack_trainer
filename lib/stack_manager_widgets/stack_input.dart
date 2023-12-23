@@ -26,7 +26,7 @@ class _StackInputState extends State<StackInput> {
       keyboardBarColor: Colors.red,
       nextFocus: false,
       actions: [
-        KeyboardAction(
+        KeyboardActionsItem(
           focusNode: _nodeText,
           displayArrows: false,
           toolbarButtons: [
@@ -68,7 +68,7 @@ class _StackInputState extends State<StackInput> {
   }
 
   void _saveStack() {
-    if (cards.length < 4 || widget.stackName == null) {
+    if (cards.length < 4) {
       final snackbar = SnackBar(
         content: Text("Please provide a name and at least 4 cards"),
       );
@@ -102,8 +102,8 @@ class _StackInputState extends State<StackInput> {
       KeyboardActions(
         isDialog: false,
         config: _buildConfig(context),
-        child: WillPopScope(
-          onWillPop: () => _onBackPressed(),
+        child: PopScope(
+          onPopInvoked: (didPop) => _onBackPressed(),
           child: KeyboardCustomInput<String>(
             focusNode: _nodeText,
             height: 65,

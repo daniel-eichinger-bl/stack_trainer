@@ -29,7 +29,7 @@ class ModeSlider extends StatelessWidget {
             min: 0,
             max: 2,
             divisions: 2,
-            value: CONST.modeDic[round.mode],
+            value: CONST.modeDic[round.mode]!,
             onChanged: (v) => round.setMode(CONST.modeDicRev[v.round()]),
           ));
     });

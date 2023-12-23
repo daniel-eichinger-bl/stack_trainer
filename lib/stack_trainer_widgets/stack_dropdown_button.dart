@@ -24,7 +24,7 @@ class StackDropdownButton extends StatelessWidget {
                       value: e,
                     ))
                 .toList(),
-            onChanged: (e) => round.setStack(e, round.map.stacks[e])),
+            onChanged: (String? e) => round.setStack(e!, round.map.stacks[e]!)),
       );
     });
   }
