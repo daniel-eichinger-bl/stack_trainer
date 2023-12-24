@@ -8,3 +8,6 @@ Memory training app that allows users to create and test custom stacks.
 ## Development
 - Android `flutter emulators` (launch any emulator) and then do a `flutter run`
 - Web `flutter run` and chose Chrome
+
+## Release 
+- [Android Flutter docs](https://docs.flutter.dev/deployment/android)
