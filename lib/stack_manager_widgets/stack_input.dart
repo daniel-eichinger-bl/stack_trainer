@@ -8,7 +8,7 @@ import 'card_picker_keyboard.dart';
 
 class StackInput extends StatefulWidget {
   final String stackName;
-  StackInput(this.stackName);
+  const StackInput(this.stackName, {super.key});
 
   @override
   _StackInputState createState() => _StackInputState();
@@ -32,7 +32,7 @@ class _StackInputState extends State<StackInput> {
           toolbarButtons: [
             (node) {
               return IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   color: Colors.white,
                 ),
@@ -44,12 +44,12 @@ class _StackInputState extends State<StackInput> {
             },
             (node) {
               return IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.backspace,
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  if (cards.length > 0) {
+                  if (cards.isNotEmpty) {
                     setState(() {
                       notifier.value = '';
                       cards.removeLast();
@@ -69,7 +69,7 @@ class _StackInputState extends State<StackInput> {
 
   void _saveStack() {
     if (cards.length < 4) {
-      final snackbar = SnackBar(
+      const snackbar = SnackBar(
         content: Text("Please provide a name and at least 4 cards"),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -109,7 +109,7 @@ class _StackInputState extends State<StackInput> {
             height: 65,
             notifier: notifier,
             builder: (context, card, hasFocus) {
-              if (card.length > 0 && !cards.contains(card)) {
+              if (card.isNotEmpty && !cards.contains(card)) {
                 cards.add(card);
               }
               return CardGridView(cards);
@@ -119,13 +119,13 @@ class _StackInputState extends State<StackInput> {
       ),
       Container(
         alignment: Alignment.bottomRight,
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
         child: RawMaterialButton(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           fillColor: Colors.red,
           onPressed: () => _saveStack(),
-          shape: CircleBorder(),
-          child: Text(
+          shape: const CircleBorder(),
+          child: const Text(
             'Save',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),

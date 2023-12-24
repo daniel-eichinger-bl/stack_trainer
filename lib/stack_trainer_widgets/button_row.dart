@@ -15,7 +15,7 @@ class ButtonRow extends StatelessWidget {
     this.chosenPosition,
     this.card,
     this.callback,
-    this.positions,
+    this.positions, {super.key},
   );
 
   Color _getButtonColor(ele, correct, context) {
@@ -46,8 +46,8 @@ class ButtonRow extends StatelessWidget {
         final suit = CONST.suitDic[card[card.length - 1]];
 
         return Container(
-            margin: EdgeInsets.only(top: 16),
-            padding: EdgeInsets.all(10),
+            margin: const EdgeInsets.only(top: 16),
+            padding: const EdgeInsets.all(10),
             width: 150,
             height: 70,
             child: ElevatedButton(
@@ -61,8 +61,8 @@ class ButtonRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    mode == CONST.TrainModes.indexes ? '$value' : '$ele',
-                    style: TextStyle(fontSize: 20),
+                    mode == CONST.TrainModes.indexes ? value : '$ele',
+                    style: const TextStyle(fontSize: 20),
                   ),
                   mode == CONST.TrainModes.indexes
                       ? Image.asset(

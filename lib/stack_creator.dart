@@ -4,6 +4,8 @@ import 'stack_manager_widgets/stack_input.dart';
 class StackCreator extends StatefulWidget {
   static const routeName = '/stack_manager';
 
+  const StackCreator({super.key});
+
   @override
   _StackCreatorState createState() => _StackCreatorState();
 }
@@ -19,15 +21,16 @@ class _StackCreatorState extends State<StackCreator> {
         backgroundColor: Theme.of(context).primaryColor,
         title: Row(
           children: [
-            Text('Stack Creator',
+            const Text('Stack Creator',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                   color: Colors.white,
                 )),
             Container(
-              margin: EdgeInsets.only(left: 8),
-              child: Icon(Icons.add_to_photos, size: 35, color: Colors.red),
+              margin: const EdgeInsets.only(left: 8),
+              child:
+                  const Icon(Icons.add_to_photos, size: 35, color: Colors.red),
             ),
           ],
         ),
@@ -40,7 +43,7 @@ class _StackCreatorState extends State<StackCreator> {
               onChanged: (value) => setState(() {
                 name = value;
               }),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Name',
                 labelStyle: TextStyle(color: Colors.white),
                 focusedBorder: OutlineInputBorder(
@@ -51,7 +54,7 @@ class _StackCreatorState extends State<StackCreator> {
                 ),
               ),
               autofocus: true,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           Expanded(child: StackInput(name))

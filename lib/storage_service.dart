@@ -5,12 +5,8 @@ class StorageService {
   static SharedPreferences? _preferences;
 
   static Future<StorageService?> getInstance() async {
-    if (_instance == null) {
-      _instance = StorageService();
-    }
-    if (_preferences == null) {
-      _preferences = await SharedPreferences.getInstance();
-    }
+    _instance ??= StorageService();
+    _preferences ??= await SharedPreferences.getInstance();
     return _instance;
   }
 

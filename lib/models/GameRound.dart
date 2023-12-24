@@ -8,7 +8,7 @@ import 'package:stack_trainer/storage_service.dart';
 import 'package:stack_trainer/constants.dart' as CONST;
 
 class GameRound with ChangeNotifier {
-  static final random = new Random();
+  static final random = Random();
   static final subModes = [CONST.TrainModes.cards, CONST.TrainModes.indexes];
   CONST.TrainModes mode = CONST.TrainModes.mix;
   CONST.TrainModes subMode = CONST.TrainModes.indexes;
@@ -25,7 +25,7 @@ class GameRound with ChangeNotifier {
   GameRound() {
     String jsonString = StorageService.getString('stacks', defValue: '{}');
     Map<String, dynamic> decoded = jsonDecode(jsonString);
-    if (decoded.length != 0) {
+    if (decoded.isNotEmpty) {
       map = CardStackMap.fromJson(decoded);
     }
 
@@ -68,7 +68,7 @@ class GameRound with ChangeNotifier {
     final correctChoice = stack.order[card] == chosenPosition;
 
     if (correctChoice) {
-      Timer(new Duration(milliseconds: 250), () => this.newRound());
+      Timer(const Duration(milliseconds: 250), () => newRound());
     } else {
       chosenPosition = -1;
       showDialog = true;

@@ -14,6 +14,8 @@ class StackTrainer extends StatelessWidget {
   static const routeName = '/stack_trainer';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  StackTrainer({super.key});
+
   Future<void> showMistakeDialog(var context, int p, var c) async {
     await showDialog(
         context: context,
@@ -39,14 +41,14 @@ class StackTrainer extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.background,
             title: Row(
               children: [
-                Text('Stack Trainer',
+                const Text('Stack Trainer',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                       color: Colors.white,
                     )),
                 Container(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Image.asset(
                       'images/icons/card_icon_red.png',
                       width: 60,
@@ -54,13 +56,13 @@ class StackTrainer extends StatelessWidget {
               ],
             ),
             leading: IconButton(
-              icon: Icon(Icons.menu, size: 35, color: Colors.red),
+              icon: const Icon(Icons.menu, size: 35, color: Colors.red),
               onPressed: () => scaffoldKey.currentState?.openDrawer(),
               color: Colors.grey,
             ),
-            systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarBrightness: Brightness.dark)),
-        drawer: CustomDrawer(),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarBrightness: Brightness.dark)),
+        drawer: const CustomDrawer(),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

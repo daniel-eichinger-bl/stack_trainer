@@ -5,7 +5,7 @@ import 'package:stack_trainer/constants.dart' as CONST;
 import 'package:stack_trainer/models/GameRound.dart';
 
 class ModeSlider extends StatelessWidget {
-  ModeSlider();
+  const ModeSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class ModeSlider extends StatelessWidget {
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: Colors.red[700],
             inactiveTrackColor: Colors.red[700],
-            trackShape: RectangularSliderTrackShape(),
+            trackShape: const RectangularSliderTrackShape(),
             trackHeight: 5.0,
             thumbColor: Colors.redAccent,
-            thumbShape: CustomSliderThumbRect(
+            thumbShape: const CustomSliderThumbRect(
                 thumbHeight: 50, thumbRadius: 10, min: 0, max: 2),
             overlayColor: Colors.black,
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 22.0),
-            tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 5.0),
+            overlayShape: const RoundSliderOverlayShape(overlayRadius: 22.0),
+            tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 5.0),
             activeTickMarkColor: Colors.white,
             inactiveTickMarkColor: Colors.white,
           ),

@@ -26,7 +26,7 @@ class MistakeDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 100,
               child: Padding(
                 padding: const EdgeInsets.all(5),
@@ -49,7 +49,7 @@ class MistakeDialog extends StatelessWidget {
     final round = Provider.of<GameRound>(context);
 
     return AlertDialog(
-      backgroundColor: Color.fromRGBO(0, 4, 7, 1.0),
+      backgroundColor: const Color.fromRGBO(0, 4, 7, 1.0),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -64,7 +64,7 @@ class MistakeDialog extends StatelessWidget {
               callback();
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_forward, color: Colors.red)),
+            icon: const Icon(Icons.arrow_forward, color: Colors.red)),
       ],
     );
   }
