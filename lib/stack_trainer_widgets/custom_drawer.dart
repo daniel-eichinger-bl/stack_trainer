@@ -35,7 +35,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
               decoration:
-                  BoxDecoration(color: Theme.of(context).backgroundColor),
+                  BoxDecoration(color: Theme.of(context).colorScheme.background),
             ),
             Container(
                 margin: EdgeInsets.only(top: 8, left: 8),
