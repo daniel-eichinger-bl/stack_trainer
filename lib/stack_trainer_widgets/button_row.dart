@@ -11,12 +11,8 @@ class ButtonRow extends StatelessWidget {
   final mode;
 
   const ButtonRow(
-    this.mode,
-    this.chosenPosition,
-    this.card,
-    this.callback,
-    this.positions, {super.key},
-  );
+      this.mode, this.chosenPosition, this.card, this.callback, this.positions,
+      {super.key});
 
   Color _getButtonColor(ele, correct, context) {
     if (chosenPosition == ele) {
