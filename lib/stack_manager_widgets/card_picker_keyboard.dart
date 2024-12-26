@@ -9,7 +9,7 @@ class CardPickerKeyboard extends StatelessWidget
   final ValueNotifier<String> notifier;
   static const double _kKeyboardHeight = 250;
 
-  CardPickerKeyboard({Key? key, required this.notifier}) : super(key: key);
+  CardPickerKeyboard({super.key, required this.notifier});
 
   void notifyCard(card) {
     notifier.value = '';

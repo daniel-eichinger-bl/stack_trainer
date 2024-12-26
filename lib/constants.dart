@@ -1,4 +1,4 @@
-library constants;
+library;
 
 enum TrainModes { cards, mix, indexes }
 const modeDic = {

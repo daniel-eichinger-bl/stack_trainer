@@ -5,8 +5,7 @@ import 'package:stack_trainer/models/GameRound.dart';
 class MistakeDialog extends StatelessWidget {
   final position;
   final callback;
-  const MistakeDialog({Key? key, this.position, this.callback})
-      : super(key: key);
+  const MistakeDialog({super.key, this.position, this.callback});
 
   int _correctIndex(idx, length) {
     if (idx <= 0) {

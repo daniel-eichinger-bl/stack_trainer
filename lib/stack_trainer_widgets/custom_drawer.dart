@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
           children: <Widget>[
             DrawerHeader(
               decoration:
-                  BoxDecoration(color: Theme.of(context).colorScheme.background),
+                  BoxDecoration(color: Theme.of(context).colorScheme.surface),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[

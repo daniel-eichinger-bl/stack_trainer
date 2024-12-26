@@ -29,7 +29,7 @@ class StackApp extends StatelessWidget {
             primaryColor: const Color.fromRGBO(0, 4, 7, 1.0),
             colorScheme: theme.colorScheme.copyWith(
               secondary: Colors.white,
-              background: const Color.fromRGBO(0, 4, 7, 1.0),
+              surface: const Color.fromRGBO(0, 4, 7, 1.0),
             ),
             textTheme: GoogleFonts.robotoCondensedTextTheme(
                 Theme.of(context).textTheme),
